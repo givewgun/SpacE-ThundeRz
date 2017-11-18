@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import logic.background;
 import sharedObject.RenderableHolder;
+import window.SceneManager;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -15,27 +16,32 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			//testing
-			StackPane root = new StackPane();
-			Scene scene = new Scene(root,600,800);
-			primaryStage.setScene(scene);
+			SceneManager.initialize(primaryStage);
+			SceneManager.gotoMainMenu();
 			primaryStage.setTitle("Space Thunderz");
+			primaryStage.centerOnScreen();
+			/*
+			//testing
+			StackPane root = new StackPane();                       //move to/replace by SceneManager
+			Scene scene = new Scene(root,600,800);                  //move to SceneManager gotoSceneOf()
+			primaryStage.setScene(scene);                           //move to/replace by SceneManager
+			primaryStage.setTitle("Space Thunderz");                //still here...
 			//I have no idea  what i'm doing
-			RenderableHolder.getInstance().add(new background());
-			GameScreen gameScreen = new GameScreen(600, 800);
-			root.getChildren().add(gameScreen);
-			gameScreen.requestFocus();
+			RenderableHolder.getInstance().add(new background());   //(temp) move to GameMain newGame()  //might move to GameLogic in the future
+			GameScreen gameScreen = new GameScreen(600, 800);       //move to GameMain newGame()
+			root.getChildren().add(gameScreen);						//move to/replace by SceneManager
+			gameScreen.requestFocus();                              //move to SceneManager
 			
-			primaryStage.show();
+			primaryStage.show();									//move to SceneManager
 			
-			AnimationTimer animation = new AnimationTimer() {
-				public void handle(long now) {
-					gameScreen.paintComponent();
-					RenderableHolder.getInstance().update();
+			AnimationTimer animation = new AnimationTimer() {		//replaced by thread in GameScreen
+				public void handle(long now) {                       
+					gameScreen.paintComponent();                    //move to GameScreen animationLoop
+					RenderableHolder.getInstance().update();		//move to GameScreen animationLoop
 
 				}
 			};
-			animation.start();
+			animation.start();*/
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
