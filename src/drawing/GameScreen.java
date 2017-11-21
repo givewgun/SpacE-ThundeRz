@@ -4,6 +4,7 @@ import input.CharacterInput;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import sharedObject.IRenderable;
@@ -72,8 +73,9 @@ public class GameScreen extends Canvas {
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
 
-				if (event.getCode().isLetterKey()) {
-					CharacterInput.addPressedCharacter(event.getCode().toString().toLowerCase().charAt(0));
+				if (event.getCode().isArrowKey() || event.getCode() == KeyCode.SPACE) {
+					CharacterInput.setKeyPressed(event.getCode(),true);
+					System.out.println("Adddddd");
 				}
 			}
 		});
@@ -82,8 +84,8 @@ public class GameScreen extends Canvas {
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
-				if (event.getCode().isLetterKey()) {
-					CharacterInput.removePressedCharacter(event.getCode().toString().toLowerCase().charAt(0));
+				if (event.getCode().isArrowKey() || event.getCode() == KeyCode.SPACE) {
+					CharacterInput.setKeyPressed(event.getCode(), false);
 				}
 
 			}
