@@ -6,7 +6,7 @@ import javafx.scene.image.WritableImage;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
-public class background implements IRenderable{
+public class Background implements IRenderable{
 	
 	private Image bgImage = null;
 	private double currentY;
@@ -14,9 +14,9 @@ public class background implements IRenderable{
 	private int imageHeight; 
 	private int screenWidth = 600;// can be changed later (according to our game screen size)
 	private int screenHeight = 800;
-	private double scrollSpeed = 0.75;
+	private double scrollSpeed = 2.1;
 	
-	public background(){
+	public Background(){
 		// TODO Auto-generated constructor stub
 		bgImage = RenderableHolder.background;
 		if (bgImage != null) {
@@ -39,7 +39,7 @@ public class background implements IRenderable{
 	public void updateBackground() {
 		currentY += scrollSpeed;
 		if(currentY >= screenHeight) {
-			//System.out.println("ตกขอบบบบ");
+			//System.out.println("ตกขอบบบบ");  
 			currentY = 0;
 		}
 	}
@@ -50,7 +50,7 @@ public class background implements IRenderable{
 			return;
 		}
 		updateBackground();
-		System.out.println(currentY);
+		//System.out.println(currentY);
 		//WritableImage croppedImage = new WritableImage(bgImage.getPixelReader(), 0, currentY, screenWidth, screenHeight);
 		gc.drawImage(bgImage, 0, currentY);
 		
