@@ -4,7 +4,7 @@ import drawing.GameScreen;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import logic.background;
+import logic.Background;
 import sharedObject.RenderableHolder;
 import window.SceneManager;
 import javafx.scene.Scene;

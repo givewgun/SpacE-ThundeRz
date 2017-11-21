@@ -1,5 +1,6 @@
 package logic;
 
+import javafx.scene.canvas.GraphicsContext;
 import sharedObject.RenderableHolder;
 import window.SceneManager;
 
@@ -26,6 +27,12 @@ public class EBig extends Enemy {
 			xDirection *= -1;
 		}
 		this.y += this.speed;
+	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,6 +1,8 @@
 package logic;
 
-public abstract class Entity {
+import sharedObject.IRenderable;
+
+public abstract class Entity implements IRenderable {
 	protected double x, y, hp, speed;
 	protected int z;
 	protected boolean visible, destroyed;
