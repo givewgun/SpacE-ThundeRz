@@ -12,7 +12,7 @@ public class GameMain {
 	public static void newGame() {
 		// TODO fill code
 		RenderableHolder.getInstance().add(new background());
-		gameScreen = new GameScreen(600, 800);
+		gameScreen = new GameScreen(SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 		SceneManager.gotoSceneOf(gameScreen);
 		gameScreen.startAnimation();
 	}
