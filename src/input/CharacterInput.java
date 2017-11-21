@@ -1,9 +1,12 @@
 package input;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import javafx.scene.input.KeyCode;
 
 public class CharacterInput {
 	// TODO read plz
@@ -14,47 +17,29 @@ public class CharacterInput {
 	 *  because if we pressed the key for some time the spaceship will constantly move 
 	 *!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 	
-	private static Queue<Character> pressedCharacterQueue = new ConcurrentLinkedQueue<>();
-	//private static Set<Character> pressedCharacters = new HashSet<>();
+	private static ArrayList<KeyCode> keyPressed = new ArrayList<>(); 
+	
 	public static final char NO_CHARACTER = Character.MIN_VALUE;
 
-	public static char pollPressedCharacter() {
-		
-	Character key = pressedCharacterQueue.poll();
-		if(key != null) {
-			return key;
+	public static boolean getKeyPressed(KeyCode keycode) {
+		return keyPressed.contains(keycode);
+	}
+
+	public static void setKeyPressed(KeyCode keycode,boolean pressed) {
+		if(pressed){
+			if(!keyPressed.contains(keycode)){
+				keyPressed.add(keycode);
+			}
+		}else{
+			keyPressed.remove(keycode);
 		}
-		return NO_CHARACTER;
-	}
-
-	public static void addPressedCharacter(char c) {
-		// TODO fill code
-		//if(!pressedCharacters.contains(c)) {
-		pressedCharacterQueue.add(c);
-			//pressedCharacters.add(c);
-		//}
-
+		System.out.println(keyPressed);
 	}
 	
-	
-
-	
-	public static void removePressedCharacter(char c) {
-		// TODO fill code
-		/*Do we really need to use this method 5555 as 
-		 * 
-		 * 						       pressing->...->then->release key
-		 * will automatically push     key->key->...->then->null          
-		 * 
-		 * into the queue and the pollPressedCharacter() method
-		 * will handle them for us
-		 */
-		pressedCharacterQueue.remove(c);
-	}
 	
 	//might need when starting/reseting a new game
 	public static void clear(){
-		pressedCharacterQueue.clear();
+		keyPressed.clear();
 	}
 
 }
