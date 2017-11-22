@@ -2,26 +2,29 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import drawing.GameScreen;
 import sharedObject.RenderableHolder;
+import window.SceneManager;
 
 public class GameLogic {
-	
+
 	private List<Entity> gameObjectContainer;
 	private static final int FPS = 60;
 	private static final long LOOP_TIME = 1000000000 / FPS;
 
 	private GameScreen canvas;
 	private boolean isGameRunning;
-	
+
 	private Player player;
 	private EBig ebig;
 	private EBoss eboss;
-	
-	public GameLogic(GameScreen canvas){
+	private EBug ebug;
+
+	public GameLogic(GameScreen canvas) {
 		this.gameObjectContainer = new ArrayList<Entity>();
-	
+
 		RenderableHolder.getInstance().add(new Background());
 		player = new Player();
 		addNewObject(player);
@@ -29,24 +32,25 @@ public class GameLogic {
 		addNewObject(ebig);
 		eboss = new EBoss();
 		addNewObject(eboss);
+		ebug = new EBug(
+				ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eBug.getWidth()));
+		addNewObject(ebug);
 		this.canvas = canvas;
 
 	}
-	
-	protected void addNewObject(Entity entity){
+
+	protected void addNewObject(Entity entity) {
 		gameObjectContainer.add(entity);
 		RenderableHolder.getInstance().add(entity);
 	}
-	
-	public void logicUpdate(){
+
+	public void logicUpdate() {
 		player.update();
 		/*
 		 * To be further discussed (how to store enemy etc)
 		 * 
-		if(!mine.isDestroyed() && player.collideWith(E)){
-			mine.onCollision(tank);
-		}
-		*/
+		 * if(!mine.isDestroyed() && player.collideWith(E)){ mine.onCollision(tank); }
+		 */
 	}
 
 	public void startGame() {
@@ -78,12 +82,12 @@ public class GameLogic {
 
 	private void updateGame() {
 		// TODO fill code
-		//need to check collide in the gameObjectContainer, but how ?
-		//to be further discussed
+		// need to check collide in the gameObjectContainer, but how ?
+		// to be further discussed
 		player.update();
 		ebig.update();
 		eboss.update();
-		
-		
+		ebug.update();
+
 	}
 }
