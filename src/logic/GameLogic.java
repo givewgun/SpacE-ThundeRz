@@ -84,10 +84,14 @@ public class GameLogic {
 		// TODO fill code
 		// need to check collide in the gameObjectContainer, but how ?
 		// to be further discussed
-		player.update();
-		ebig.update();
-		eboss.update();
-		ebug.update();
+		for (Entity i : gameObjectContainer) {
+			i.update();
+			for (Entity j : gameObjectContainer) {
+				if (i != j && ((CollidableEntity) i).collideWith((CollidableEntity) j)) {
+					((CollidableEntity) i).onCollision((CollidableEntity) j);
+				}
+			}
+		}
 
 	}
 }

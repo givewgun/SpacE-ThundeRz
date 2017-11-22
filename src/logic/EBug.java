@@ -14,6 +14,7 @@ public class EBug extends Enemy {
 		this.destroyed = false;
 		this.x = x;
 		this.y = -this.height;
+		this.collideDamage = 10;
 	}
 
 	@Override

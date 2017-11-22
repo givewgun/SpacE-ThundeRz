@@ -16,6 +16,7 @@ public class EBig extends Enemy {
 		this.destroyed = false;
 		this.x = (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y = -this.height;
+		this.collideDamage = 30;
 
 	}
 
