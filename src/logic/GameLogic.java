@@ -86,6 +86,8 @@ public class GameLogic {
 		// to be further discussed
 		for (Entity i : gameObjectContainer) {
 			i.update();
+		}
+		for (Entity i : gameObjectContainer) {
 			for (Entity j : gameObjectContainer) {
 				if (i != j && ((CollidableEntity) i).collideWith((CollidableEntity) j)) {
 					((CollidableEntity) i).onCollision((CollidableEntity) j);
