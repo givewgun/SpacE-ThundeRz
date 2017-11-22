@@ -9,8 +9,8 @@ public abstract class Enemy extends CollidableEntity {
 		this.side = -1;
 	}
 
-	public void onCollision() {
-		this.hp -= 100;
+	public void onCollision(CollidableEntity others) {
+		this.hp -= others.collideDamage;
 	}
 
 	public boolean isOutOfScreen() {

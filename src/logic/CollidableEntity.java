@@ -1,7 +1,7 @@
 package logic;
 
 public abstract class CollidableEntity extends Entity {
-	protected double width, height;
+	protected double width, height, collideDamage;
 	protected int side;
 
 	protected CollidableEntity(double hp, double speed) {
@@ -16,5 +16,5 @@ public abstract class CollidableEntity extends Entity {
 		return false;
 	}
 
-	public abstract void onCollision();
+	public abstract void onCollision(CollidableEntity others);
 }
