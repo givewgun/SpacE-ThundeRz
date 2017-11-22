@@ -11,10 +11,14 @@ public abstract class Enemy extends CollidableEntity {
 
 	public void onCollision(CollidableEntity others) {
 		this.hp -= others.collideDamage;
+		if(this.hp <= 0) {
+			this.destroyed = true;
+			this.visible = false;
+		}
 	}
 
 	public boolean isOutOfScreen() {
-		return (int) this.x > SceneManager.SCENE_WIDTH;
+		return (int) this.y > SceneManager.SCENE_HEIGHT;
 	}
 
 }
