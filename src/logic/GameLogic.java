@@ -16,6 +16,8 @@ public class GameLogic {
 	private boolean isGameRunning;
 	
 	private Player player;
+	private EBig ebig;
+	private EBoss eboss;
 	
 	public GameLogic(GameScreen canvas){
 		this.gameObjectContainer = new ArrayList<Entity>();
@@ -23,6 +25,10 @@ public class GameLogic {
 		RenderableHolder.getInstance().add(new Background());
 		player = new Player();
 		addNewObject(player);
+		ebig = new EBig();
+		addNewObject(ebig);
+		eboss = new EBoss();
+		addNewObject(eboss);
 		this.canvas = canvas;
 
 	}
@@ -75,6 +81,9 @@ public class GameLogic {
 		//need to check collide in the gameObjectContainer, but how ?
 		//to be further discussed
 		player.update();
+		ebig.update();
+		eboss.update();
+		
 		
 	}
 }
