@@ -66,9 +66,9 @@ public class Player extends CollidableEntity implements IRenderable{
 	}
 	
 	@Override
-	public void onCollision() {
+	public void onCollision(CollidableEntity others) {
 		// TODO Auto-generated method stub
-		this.hp -= 15;
+		this.hp -= others.collideDamage;
 		//to be further discussed (sound effect etc)
 		if(this.hp <= 0) {
 			this.destroyed = true;
