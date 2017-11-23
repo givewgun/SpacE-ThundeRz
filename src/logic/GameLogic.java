@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import drawing.GameScreen;
+import game.GameMain;
+import input.CharacterInput;
 import sharedObject.RenderableHolder;
 import window.SceneManager;
 
@@ -48,15 +50,6 @@ public class GameLogic {
 		RenderableHolder.getInstance().add(entity);
 	}
 
-	public void logicUpdate() {
-		player.update();
-		/*
-		 * To be further discussed (how to store enemy etc)
-		 * 
-		 * if(!mine.isDestroyed() && player.collideWith(E)){ mine.onCollision(tank); }
-		 */
-	}
-
 	public void startGame() {
 		this.isGameRunning = true;
 		new Thread(this::gameLoop, "Game Loop Thread").start();
@@ -64,6 +57,8 @@ public class GameLogic {
 
 	public void stopGame() {
 		this.isGameRunning = false;
+		this.gameObjectContainer.clear();
+		this.pendingBullet.clear();
 	}
 
 	private void gameLoop() {
@@ -111,7 +106,9 @@ public class GameLogic {
 			} else {
 				i++;
 			}
-
+		}
+		if(player.isDestroyed()) {
+			GameMain.stopGame();
 		}
 	}
 	

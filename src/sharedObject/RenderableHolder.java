@@ -90,4 +90,8 @@ public class RenderableHolder {
 		return entities;
 	} 
 	
+	public void clear() {
+		entities.clear();
+	}
+	
 }

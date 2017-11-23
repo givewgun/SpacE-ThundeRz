@@ -12,6 +12,7 @@ import window.SceneManager;
 public class Player extends CollidableEntity implements IRenderable {
 	private Image playerImage = null;
 	GameLogic gameLogic;
+	private int bulletDelayTick = 0;
 
 	public Player(GameLogic gameLogic) {
 		// TODO Auto-generated constructor stub
@@ -64,8 +65,12 @@ public class Player extends CollidableEntity implements IRenderable {
 		if (CharacterInput.getKeyPressed(KeyCode.SPACE)) {
 			// shoot a bullet
 			// to be further discussed
-			System.out.println("SHOOOOT");
-			gameLogic.addPendingBullet(new Bullet(this.x+(this.width/2.0),this.y));
+			
+			if(bulletDelayTick%7 == 0) {
+				System.out.println("SHOOOOT");
+				gameLogic.addPendingBullet(new Bullet(this.x+(this.width/2.0),this.y));
+			}
+			bulletDelayTick++;
 		}
 
 	}
