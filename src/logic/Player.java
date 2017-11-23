@@ -11,12 +11,15 @@ import window.SceneManager;
 
 public class Player extends CollidableEntity implements IRenderable {
 	private Image playerImage = null;
+	GameLogic gameLogic;
 
-	public Player() {
+	public Player(GameLogic gameLogic) {
 		// TODO Auto-generated constructor stub
 		super(1000, 20);
 		playerImage = RenderableHolder.ship3; // temporary player ship might be further implement in the future
 
+		this.gameLogic=gameLogic;
+		
 		if (playerImage != null) {
 			this.width = playerImage.getWidth();
 			this.height = playerImage.getHeight();
@@ -62,7 +65,7 @@ public class Player extends CollidableEntity implements IRenderable {
 			// shoot a bullet
 			// to be further discussed
 			System.out.println("SHOOOOT");
-
+			gameLogic.addPendingBullet(new Bullet(this.x+(this.width/2.0),this.y));
 		}
 
 	}

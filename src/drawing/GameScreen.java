@@ -1,5 +1,8 @@
 package drawing;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import input.CharacterInput;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -7,10 +10,14 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import logic.Bullet;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class GameScreen extends Canvas {
+	
+	private List<Bullet> pendingBullet;
+	
 	private static final int FPS = 60;
 	private static final long LOOP_TIME = 1000000000 / FPS;
 	private Thread gameAnimation;
@@ -22,6 +29,8 @@ public class GameScreen extends Canvas {
 		this.setVisible(true);
 		this.isAnimationRunning = false;
 		addKeyEventHandler();
+		
+		pendingBullet=new ArrayList<Bullet>();
 	}
 
 	public void startAnimation() {
@@ -54,6 +63,10 @@ public class GameScreen extends Canvas {
 	}
 
 	public void updateAnimation() {
+		if(!pendingBullet.isEmpty()) {
+			RenderableHolder.getInstance().add(pendingBullet.get(0));
+			pendingBullet.remove(0);
+		}
 		GraphicsContext gc = this.getGraphicsContext2D();
 		gc.setFill(Color.BLACK);
 		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
@@ -99,6 +112,10 @@ public class GameScreen extends Canvas {
 
 			}
 		});
+	}
+	
+	public void addPendingBullet(Bullet a) {
+		pendingBullet.add(a);
 	}
 
 }

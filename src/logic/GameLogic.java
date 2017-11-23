@@ -10,6 +10,8 @@ import window.SceneManager;
 
 public class GameLogic {
 
+	private List<Bullet> pendingBullet;
+	
 	private List<Entity> gameObjectContainer;
 	private static final int FPS = 60;
 	private static final long LOOP_TIME = 1000000000 / FPS;
@@ -26,7 +28,7 @@ public class GameLogic {
 		this.gameObjectContainer = new ArrayList<Entity>();
 
 		RenderableHolder.getInstance().add(new Background());
-		player = new Player();
+		player = new Player(this); /////////////////////////////////////
 		addNewObject(player);
 		ebig = new EBig();
 		addNewObject(ebig);
@@ -36,6 +38,8 @@ public class GameLogic {
 				ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eBug.getWidth()));
 		addNewObject(ebug);
 		this.canvas = canvas;
+		
+		pendingBullet=new ArrayList<Bullet>();
 
 	}
 
@@ -84,6 +88,12 @@ public class GameLogic {
 		// TODO fill code
 		// need to check collide in the gameObjectContainer, but how ?
 		// to be further discussed
+		if(!pendingBullet.isEmpty()) {
+			gameObjectContainer.add(pendingBullet.get(0));
+			pendingBullet.remove(0);
+			
+			
+		}
 		for (Entity i : gameObjectContainer) {
 			i.update();
 		}
@@ -103,5 +113,10 @@ public class GameLogic {
 			}
 
 		}
+	}
+	
+	public void addPendingBullet(Bullet a) {
+		pendingBullet.add(a);
+		canvas.addPendingBullet(a);
 	}
 }
