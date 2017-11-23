@@ -113,6 +113,7 @@ public class Player extends CollidableEntity implements IRenderable {
 			if(bulletDelayTick%7 == 0) {
 				System.out.println("SHOOOOT");
 				gameLogic.addPendingBullet(new Bullet(this.x+(this.width/2.0),this.y));
+				RenderableHolder.laser.play();
 			}
 			bulletDelayTick++;
 		}

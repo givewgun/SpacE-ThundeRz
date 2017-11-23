@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 
 
 
@@ -20,6 +21,7 @@ public class RenderableHolder {
 						eBig,eBoss,eEyeball,eBug,eSquid,eWing,
 						bullet,missile,explo1,explo2,explo3,explo4,
 						background;
+	public static AudioClip bgm,laser;
 	
 	
 	
@@ -65,6 +67,10 @@ public class RenderableHolder {
 		missile = new Image(ClassLoader.getSystemResource("bullet/missile.gif").toString());	
 		
 		background = new Image(ClassLoader.getSystemResource("background/bg2.png").toString());
+	
+		bgm = new AudioClip(ClassLoader.getSystemResource("song/Corneria.wav").toExternalForm());
+		laser = new AudioClip(ClassLoader.getSystemResource("song/laser.wav").toExternalForm());
+		laser.setVolume(0.35);
 	}
 	
 	public void add(IRenderable entity) {
