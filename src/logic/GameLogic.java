@@ -94,6 +94,14 @@ public class GameLogic {
 				}
 			}
 		}
+		int i = 0;
+		while (i < gameObjectContainer.size()) {
+			if (gameObjectContainer.get(i).isDestroyed()) {
+				gameObjectContainer.remove(i);
+			} else {
+				i++;
+			}
 
+		}
 	}
 }

@@ -62,6 +62,15 @@ public class GameScreen extends Canvas {
 				entity.draw(gc);
 			}
 		}
+		int i = 0;
+		while (i < RenderableHolder.getInstance().getEntities().size()) {
+			if (RenderableHolder.getInstance().getEntities().get(i).isDestroyed()) {
+				RenderableHolder.getInstance().getEntities().remove(i);
+			} else {
+				i++;
+			}
+
+		}
 
 	}
 
@@ -74,7 +83,7 @@ public class GameScreen extends Canvas {
 				// TODO Auto-generated method stub
 
 				if (event.getCode().isArrowKey() || event.getCode() == KeyCode.SPACE) {
-					CharacterInput.setKeyPressed(event.getCode(),true);
+					CharacterInput.setKeyPressed(event.getCode(), true);
 					System.out.println("Adddddd");
 				}
 			}
