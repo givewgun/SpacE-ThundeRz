@@ -1,7 +1,7 @@
 package drawing;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import input.CharacterInput;
 import javafx.event.EventHandler;
@@ -15,9 +15,10 @@ import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
 public class GameScreen extends Canvas {
-	
-	private List<Bullet> pendingBullet;
-	
+
+	private Queue<Bullet> pendingEnemyBullet;
+	private Queue<Bullet> pendingPlayerBullet;
+
 	private static final int FPS = 60;
 	private static final long LOOP_TIME = 1000000000 / FPS;
 	private Thread gameAnimation;
@@ -29,8 +30,9 @@ public class GameScreen extends Canvas {
 		this.setVisible(true);
 		this.isAnimationRunning = false;
 		addKeyEventHandler();
-		
-		pendingBullet=new ArrayList<Bullet>();
+
+		pendingEnemyBullet = new ConcurrentLinkedQueue<>();
+		pendingPlayerBullet = new ConcurrentLinkedQueue<>();
 	}
 
 	public void startAnimation() {
@@ -63,9 +65,11 @@ public class GameScreen extends Canvas {
 	}
 
 	public void updateAnimation() {
-		if(!pendingBullet.isEmpty()) {
-			RenderableHolder.getInstance().add(pendingBullet.get(0));
-			pendingBullet.remove(0);
+		if (!pendingEnemyBullet.isEmpty()) {
+			RenderableHolder.getInstance().add(pendingEnemyBullet.poll());
+		}
+		if (!pendingPlayerBullet.isEmpty()) {
+			RenderableHolder.getInstance().add(pendingPlayerBullet.poll());
 		}
 		GraphicsContext gc = this.getGraphicsContext2D();
 		gc.setFill(Color.BLACK);
@@ -113,9 +117,13 @@ public class GameScreen extends Canvas {
 			}
 		});
 	}
-	
+
 	public void addPendingBullet(Bullet a) {
-		pendingBullet.add(a);
+		if (a.side == 1) {
+			pendingPlayerBullet.add(a);
+		} else if (a.side == -1) {
+			pendingEnemyBullet.add(a);
+		}
 	}
 
 }

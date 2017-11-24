@@ -2,18 +2,20 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
 import drawing.GameScreen;
 import game.GameMain;
-import input.CharacterInput;
 import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class GameLogic {
 
-	private List<Bullet> pendingBullet;
-	
+	private Queue<Bullet> pendingEnemyBullet;
+	private Queue<Bullet> pendingPlayerBullet;
+
 	private List<Entity> gameObjectContainer;
 	private static final int FPS = 60;
 	private static final long LOOP_TIME = 1000000000 / FPS;
@@ -40,8 +42,9 @@ public class GameLogic {
 				ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eBug.getWidth()));
 		addNewObject(ebug);
 		this.canvas = canvas;
-		
-		pendingBullet=new ArrayList<Bullet>();
+
+		pendingEnemyBullet = new ConcurrentLinkedQueue<>();
+		pendingPlayerBullet = new ConcurrentLinkedQueue<>();
 
 	}
 
@@ -58,7 +61,8 @@ public class GameLogic {
 	public void stopGame() {
 		this.isGameRunning = false;
 		this.gameObjectContainer.clear();
-		this.pendingBullet.clear();
+		this.pendingEnemyBullet.clear();
+		this.pendingPlayerBullet.clear();
 	}
 
 	private void gameLoop() {
@@ -83,11 +87,13 @@ public class GameLogic {
 		// TODO fill code
 		// need to check collide in the gameObjectContainer, but how ?
 		// to be further discussed
-		if(!pendingBullet.isEmpty()) {
-			gameObjectContainer.add(pendingBullet.get(0));
-			pendingBullet.remove(0);
-			
-			
+		if (!pendingEnemyBullet.isEmpty()) {
+			gameObjectContainer.add(pendingEnemyBullet.poll());
+
+		}
+		if (!pendingPlayerBullet.isEmpty()) {
+			gameObjectContainer.add(pendingPlayerBullet.poll());
+
 		}
 		for (Entity i : gameObjectContainer) {
 			i.update();
@@ -107,13 +113,17 @@ public class GameLogic {
 				i++;
 			}
 		}
-		if(player.isDestroyed()) {
+		if (player.isDestroyed()) {
 			GameMain.stopGame();
 		}
 	}
-	
+
 	public void addPendingBullet(Bullet a) {
-		pendingBullet.add(a);
+		if (a.side == 1) {
+			pendingPlayerBullet.add(a);
+		} else if (a.side == -1) {
+			pendingEnemyBullet.add(a);
+		}
 		canvas.addPendingBullet(a);
 	}
 }

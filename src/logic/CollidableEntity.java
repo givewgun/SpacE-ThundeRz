@@ -4,7 +4,7 @@ import javafx.scene.shape.Shape;
 
 public abstract class CollidableEntity extends Entity {
 	protected double width, height, collideDamage;
-	protected int side;
+	public int side;
 
 	protected CollidableEntity(double hp, double speed) {
 		super(hp, speed);
