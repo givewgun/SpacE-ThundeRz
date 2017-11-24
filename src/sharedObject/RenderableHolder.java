@@ -19,7 +19,7 @@ public class RenderableHolder {
 	//various image plz check the image first before using (like to find its size / how it looks etc)
 	public static Image ship1,ship2,ship3,ship4,ship5,ship6,
 						eBig,eBoss,eEyeball,eBug,eSquid,eWing,
-						bullet,missile,explo1,explo2,explo3,explo4,
+						bullet,bossBullet,missile,explo1,explo2,explo3,explo4,
 						background;
 	public static AudioClip bgm,laser;
 	
@@ -65,6 +65,7 @@ public class RenderableHolder {
 		
 		bullet = new Image(ClassLoader.getSystemResource("bullet/bullet.png").toString());
 		missile = new Image(ClassLoader.getSystemResource("bullet/missile.gif").toString());	
+		bossBullet = new Image(ClassLoader.getSystemResource("bullet/bossBullet.gif").toString());
 		
 		background = new Image(ClassLoader.getSystemResource("background/bg2.png").toString());
 	

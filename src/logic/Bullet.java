@@ -1,22 +1,33 @@
 package logic;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class Bullet extends CollidableEntity {
+	
+	private Image bulletType;
 
-	protected Bullet(double x, double y, int side) {
+	protected Bullet(double x, double y, int side, CollidableEntity type) {
 		super(0.001, 20);
 		// TODO Auto-generated constructor stub
 		this.collideDamage = 10;
 		this.side = side;
 		this.x = x;
 		this.y = y;
-		this.height = RenderableHolder.bullet.getHeight();
-		this.width = RenderableHolder.bullet.getWidth();
+		if(type instanceof Player) {
+			this.height = RenderableHolder.bullet.getHeight();
+			this.width = RenderableHolder.bullet.getWidth();
+			bulletType = RenderableHolder.bullet;
+		}
+		else if(type instanceof EBoss) {
+			this.height = RenderableHolder.bossBullet.getHeight();
+			this.width = RenderableHolder.bossBullet.getWidth();
+			bulletType = RenderableHolder.bossBullet;
+		}
 		this.visible = true;
 		this.destroyed = false;
 	}
@@ -25,11 +36,11 @@ public class Bullet extends CollidableEntity {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		if (side == 1) {
-			gc.drawImage(RenderableHolder.bullet, x - this.width / 2, y);
+			gc.drawImage(bulletType, x - this.width / 2, y);
 		} else {
 			gc.save();
 			gc.rotate(180);
-			gc.drawImage(RenderableHolder.bullet, -(x + this.width / 2), -y);
+			gc.drawImage(bulletType, -(x + this.width / 2), -y);
 			gc.restore();
 		}
 

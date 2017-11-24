@@ -35,9 +35,9 @@ public class EBoss extends Enemy {
 			this.destroyed = true;
 		}
 
-		if (bulletDelayTick % 7 == 0) {
+		if (bulletDelayTick % 10 == 0) {
 			System.out.println("SHOOOOT");
-			gameLogic.addPendingBullet(new Bullet(this.x + (this.width / 2.0), this.y + this.height, -1));
+			gameLogic.addPendingBullet(new Bullet(this.x + (this.width / 2.0), this.y + this.height, -1, this));
 			RenderableHolder.laser.play();
 		}
 		bulletDelayTick++;
