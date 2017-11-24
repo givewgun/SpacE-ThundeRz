@@ -27,8 +27,8 @@ public class EBoss extends Enemy {
 		// TODO Auto-generated method stub
 
 		long now = System.nanoTime();
-		this.x = Math.sin(5 * now * 1e-9 + Math.toRadians(90)) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
-				+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
+		//this.x = Math.sin(5 * now * 1e-9 + Math.toRadians(90)) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
+		//		+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y += this.speed;
 		if (this.isOutOfScreen()) {
 			this.visible = false;
@@ -54,7 +54,7 @@ public class EBoss extends Enemy {
 		// TODO Auto-generated method stub
 		Circle bound = new Circle();
 		bound.setCenterX(x + width / 2);
-		bound.setCenterY(y + width / 2);
+		bound.setCenterY(y + height / 2);
 		bound.setRadius(width / 2);
 		return bound;
 	}
