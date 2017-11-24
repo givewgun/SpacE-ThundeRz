@@ -12,12 +12,16 @@ public abstract class CollidableEntity extends Entity {
 
 	protected boolean collideWith(CollidableEntity other) {
 		Shape intersect = Shape.intersect(this.getBoundary(), other.getBoundary());
-		if(this.side != other.side) {
+		if (this instanceof Bullet && other instanceof Bullet) {
+			return false;
+		}
+		if (this.side != other.side) {
 			return (intersect.getBoundsInLocal().getWidth() != -1);
 		}
 		return false;
 	}
 
 	public abstract void onCollision(CollidableEntity others);
+
 	public abstract Shape getBoundary();
 }
