@@ -1,5 +1,7 @@
 package logic;
 
+import javafx.scene.shape.Shape;
+
 public abstract class CollidableEntity extends Entity {
 	protected double width, height, collideDamage;
 	protected int side;
@@ -9,12 +11,13 @@ public abstract class CollidableEntity extends Entity {
 	}
 
 	protected boolean collideWith(CollidableEntity other) {
-		if (this.side != other.side) {
-			return (other.x + other.width >= x && other.y + other.height >= y && other.x <= x + width
-					&& other.y <= y + height);
+		Shape intersect = Shape.intersect(this.getBoundary(), other.getBoundary());
+		if(this.side != other.side) {
+			return (intersect.getBoundsInLocal().getWidth() != -1);
 		}
 		return false;
 	}
 
 	public abstract void onCollision(CollidableEntity others);
+	public abstract Shape getBoundary();
 }

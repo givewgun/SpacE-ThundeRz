@@ -1,6 +1,8 @@
 package logic;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import sharedObject.RenderableHolder;
 import window.SceneManager;
 
@@ -46,6 +48,16 @@ public class Bullet extends CollidableEntity {
 
 	private boolean isOutOfScreen() {
 		return (int) this.y > SceneManager.SCENE_HEIGHT || (int) this.y < 0;
+	}
+
+	@Override
+	public Shape getBoundary() {
+		Rectangle bound = new Rectangle();
+		bound.setX(x);
+		bound.setY(y);
+		bound.setWidth(width);
+		bound.setHeight(height);
+		return bound;
 	}
 
 }

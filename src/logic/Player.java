@@ -9,6 +9,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 import window.SceneManager;
@@ -156,6 +158,16 @@ public class Player extends CollidableEntity implements IRenderable {
 				this.x -= speed;
 			}
 		}
+	}
+
+	@Override
+	public Shape getBoundary() {
+		// TODO Auto-generated method stub
+		Circle bound = new Circle();
+		bound.setCenterX(x+width/2);
+		bound.setCenterY(y+width/2);
+		bound.setRadius(width/2);
+		return bound;
 	}
 
 }

@@ -1,6 +1,8 @@
 package logic;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 import sharedObject.RenderableHolder;
 import window.SceneManager;
 
@@ -38,9 +40,17 @@ public class EBig extends Enemy {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-
 		gc.drawImage(RenderableHolder.eBig, x, y);
-
+	}
+	
+	@Override
+	public Shape getBoundary() {
+		// TODO Auto-generated method stub
+		Circle bound = new Circle();
+		bound.setCenterX(x+width/2);
+		bound.setCenterY(y+width/2);
+		bound.setRadius(width/2);
+		return bound;
 	}
 
 }

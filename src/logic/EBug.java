@@ -1,6 +1,8 @@
 package logic;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import sharedObject.RenderableHolder;
 
 public class EBug extends Enemy {
@@ -31,6 +33,15 @@ public class EBug extends Enemy {
 			this.visible = false;
 			this.destroyed = true;
 		}
+	}
+	
+	public Shape getBoundary() {
+		Rectangle bound = new Rectangle();
+		bound.setX(x);
+		bound.setY(y);
+		bound.setWidth(width);
+		bound.setHeight(height);
+		return bound;
 	}
 
 }
