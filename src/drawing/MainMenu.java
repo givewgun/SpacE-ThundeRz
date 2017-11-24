@@ -13,8 +13,8 @@ import javafx.scene.text.TextAlignment;
 import window.SceneManager;
 
 public class MainMenu extends Canvas {
-	private static final Font TITLE_FONT = new Font("Monospace", 80);
-	private static final Font MENU_FONT = new Font("Monospace", 40);
+	private static final Font TITLE_FONT = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(),70);
+	private static final Font MENU_FONT = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(),40);
 
 	public MainMenu() {
 		super(SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
@@ -23,7 +23,7 @@ public class MainMenu extends Canvas {
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 		gc.setTextAlign(TextAlignment.CENTER);
-		gc.setFill(Color.WHITE);
+		gc.setFill(Color.DODGERBLUE);
 		gc.setFont(TITLE_FONT);
 		gc.fillText("Space Thunderz", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT / 4);
 		gc.setFont(MENU_FONT);
