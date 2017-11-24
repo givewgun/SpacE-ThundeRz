@@ -34,7 +34,7 @@ public class GameLogic {
 		addNewObject(player);
 		ebig = new EBig();
 		addNewObject(ebig);
-		eboss = new EBoss();
+		eboss = new EBoss(this);
 		addNewObject(eboss);
 		ebug = new EBug(
 				ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eBug.getWidth()));

@@ -7,8 +7,10 @@ import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class EBoss extends Enemy {
+	private GameLogic gameLogic;
+	private int bulletDelayTick = 0;
 
-	public EBoss() {
+	public EBoss(GameLogic gameLogic) {
 		super(1000, 0.2);
 		this.width = RenderableHolder.eBoss.getWidth();
 		this.height = RenderableHolder.eBoss.getHeight();
@@ -17,11 +19,13 @@ public class EBoss extends Enemy {
 		this.x = (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y = -this.height;
 		this.collideDamage = 50;
+		this.gameLogic = gameLogic;
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
+
 		long now = System.nanoTime();
 		this.x = Math.sin(5 * now * 1e-9 + Math.toRadians(90)) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
 				+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
@@ -30,6 +34,13 @@ public class EBoss extends Enemy {
 			this.visible = false;
 			this.destroyed = true;
 		}
+
+		if (bulletDelayTick % 7 == 0) {
+			System.out.println("SHOOOOT");
+			gameLogic.addPendingBullet(new Bullet(this.x + (this.width / 2.0), this.y + this.height, -1));
+			RenderableHolder.laser.play();
+		}
+		bulletDelayTick++;
 	}
 
 	@Override
@@ -37,14 +48,14 @@ public class EBoss extends Enemy {
 		// TODO Auto-generated method stub
 		gc.drawImage(RenderableHolder.eBoss, x, y);
 	}
-	
+
 	@Override
 	public Shape getBoundary() {
 		// TODO Auto-generated method stub
 		Circle bound = new Circle();
-		bound.setCenterX(x+width/2);
-		bound.setCenterY(y+width/2);
-		bound.setRadius(width/2);
+		bound.setCenterX(x + width / 2);
+		bound.setCenterY(y + width / 2);
+		bound.setRadius(width / 2);
 		return bound;
 	}
 

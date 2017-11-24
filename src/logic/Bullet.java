@@ -8,11 +8,11 @@ import window.SceneManager;
 
 public class Bullet extends CollidableEntity {
 
-	protected Bullet(double x, double y) {
+	protected Bullet(double x, double y, int side) {
 		super(0.001, 20);
 		// TODO Auto-generated constructor stub
-		this.collideDamage = 1;
-		this.side = 1;
+		this.collideDamage = 10;
+		this.side = side;
 		this.x = x;
 		this.y = y;
 		this.height = RenderableHolder.bullet.getHeight();
@@ -24,7 +24,14 @@ public class Bullet extends CollidableEntity {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(RenderableHolder.bullet, x-this.width/2, y);
+		if (side == 1) {
+			gc.drawImage(RenderableHolder.bullet, x - this.width / 2, y);
+		} else {
+			gc.save();
+			gc.rotate(180);
+			gc.drawImage(RenderableHolder.bullet, -(x + this.width / 2), -y);
+			gc.restore();
+		}
 
 	}
 
@@ -38,7 +45,12 @@ public class Bullet extends CollidableEntity {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		y -= speed;
+		if (side == 1) {
+			y -= speed;
+
+		} else {
+			y += speed;
+		}
 		if (this.hp <= 0 || isOutOfScreen()) {
 			this.destroyed = true;
 			this.visible = false;

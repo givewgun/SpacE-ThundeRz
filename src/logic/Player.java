@@ -27,8 +27,8 @@ public class Player extends CollidableEntity implements IRenderable {
 		this.originalHp = this.hp;
 		playerImage = RenderableHolder.ship3; // temporary player ship might be further implement in the future
 
-		this.gameLogic=gameLogic;
-		
+		this.gameLogic = gameLogic;
+
 		if (playerImage != null) {
 			this.width = playerImage.getWidth();
 			this.height = playerImage.getHeight();
@@ -43,42 +43,33 @@ public class Player extends CollidableEntity implements IRenderable {
 			height = 0;
 		}
 	}
-	
+
 	private void drawHpBar(GraphicsContext gc) {
-		double percentHp = this.hp/this.originalHp;
-		if(percentHp >= 0.65) {
-			//gc.setFill(Color.LAWNGREEN);
-			LinearGradient linearGrad = new LinearGradient(
-	                0,   // start X 
-	                0,   // start Y
-	                0,   // end X
-	                1, // end Y
-	                true, // proportional
-	                CycleMethod.NO_CYCLE, // cycle colors
-	                // stops
-	                new Stop(0.1f, Color.LAWNGREEN),
-	                new Stop(1.0f, Color.GREEN));
-	        gc.setFill(linearGrad);
+		double percentHp = this.hp / this.originalHp;
+		if (percentHp >= 0.65) {
+			// gc.setFill(Color.LAWNGREEN);
+			LinearGradient linearGrad = new LinearGradient(0, // start X
+					0, // start Y
+					0, // end X
+					1, // end Y
+					true, // proportional
+					CycleMethod.NO_CYCLE, // cycle colors
+					// stops
+					new Stop(0.1f, Color.LAWNGREEN), new Stop(1.0f, Color.GREEN));
+			gc.setFill(linearGrad);
+		} else if (percentHp >= 0.25) {
+			LinearGradient linearGrad = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
+					// stops
+					new Stop(0.1f, Color.YELLOW), new Stop(1.0f, Color.RED));
+			gc.setFill(linearGrad);
+		} else {
+			LinearGradient linearGrad = new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE,
+					// stops
+					new Stop(0.1f, Color.RED), new Stop(1.0f, Color.BLACK));
+			gc.setFill(linearGrad);
 		}
-		else if(percentHp >= 0.25) {
-			LinearGradient linearGrad = new LinearGradient(0,0,0,1,true,CycleMethod.NO_CYCLE,
-	                // stops
-	                new Stop(0.1f, Color.YELLOW),
-	                new Stop(1.0f, Color.RED));
-	        gc.setFill(linearGrad);
-		}
-		else {
-			LinearGradient linearGrad = new LinearGradient(0,0,0,1,true,CycleMethod.NO_CYCLE,
-	                // stops
-	                new Stop(0.1f, Color.RED),
-	                new Stop(1.0f, Color.BLACK));
-	        gc.setFill(linearGrad);
-		}
-		gc.fillRect(SceneManager.SCENE_WIDTH/2 - 200*percentHp, 750, 2*200*percentHp, 20);
-		
-		
-		
-		
+		gc.fillRect(SceneManager.SCENE_WIDTH / 2 - 200 * percentHp, 750, 2 * 200 * percentHp, 20);
+
 	}
 
 	@Override
@@ -111,10 +102,10 @@ public class Player extends CollidableEntity implements IRenderable {
 		if (CharacterInput.getKeyPressed(KeyCode.SPACE)) {
 			// shoot a bullet
 			// to be further discussed
-			
-			if(bulletDelayTick%7 == 0) {
+
+			if (bulletDelayTick % 7 == 0) {
 				System.out.println("SHOOOOT");
-				gameLogic.addPendingBullet(new Bullet(this.x+(this.width/2.0),this.y));
+				gameLogic.addPendingBullet(new Bullet(this.x + (this.width / 2.0), this.y, 1));
 				RenderableHolder.laser.play();
 			}
 			bulletDelayTick++;
@@ -164,9 +155,9 @@ public class Player extends CollidableEntity implements IRenderable {
 	public Shape getBoundary() {
 		// TODO Auto-generated method stub
 		Circle bound = new Circle();
-		bound.setCenterX(x+width/2);
-		bound.setCenterY(y+width/2);
-		bound.setRadius(width/2);
+		bound.setCenterX(x + width / 2);
+		bound.setCenterY(y + width / 2);
+		bound.setRadius(width / 2);
 		return bound;
 	}
 
