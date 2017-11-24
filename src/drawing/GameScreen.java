@@ -16,8 +16,7 @@ import sharedObject.RenderableHolder;
 
 public class GameScreen extends Canvas {
 
-	private Queue<Bullet> pendingEnemyBullet;
-	private Queue<Bullet> pendingPlayerBullet;
+	private Queue<Bullet> pendingBullet;
 
 	private static final int FPS = 60;
 	private static final long LOOP_TIME = 1000000000 / FPS;
@@ -31,8 +30,8 @@ public class GameScreen extends Canvas {
 		this.isAnimationRunning = false;
 		addKeyEventHandler();
 
-		pendingEnemyBullet = new ConcurrentLinkedQueue<>();
-		pendingPlayerBullet = new ConcurrentLinkedQueue<>();
+		pendingBullet = new ConcurrentLinkedQueue<>();
+
 	}
 
 	public void startAnimation() {
@@ -65,12 +64,10 @@ public class GameScreen extends Canvas {
 	}
 
 	public void updateAnimation() {
-		if (!pendingEnemyBullet.isEmpty()) {
-			RenderableHolder.getInstance().add(pendingEnemyBullet.poll());
+		while (!pendingBullet.isEmpty()) {
+			RenderableHolder.getInstance().add(pendingBullet.poll());
 		}
-		if (!pendingPlayerBullet.isEmpty()) {
-			RenderableHolder.getInstance().add(pendingPlayerBullet.poll());
-		}
+		System.out.println("Number of Renderable object\t" + RenderableHolder.getInstance().getEntities().size());
 		GraphicsContext gc = this.getGraphicsContext2D();
 		gc.setFill(Color.BLACK);
 		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
@@ -119,11 +116,9 @@ public class GameScreen extends Canvas {
 	}
 
 	public void addPendingBullet(Bullet a) {
-		if (a.side == 1) {
-			pendingPlayerBullet.add(a);
-		} else if (a.side == -1) {
-			pendingEnemyBullet.add(a);
-		}
+
+		pendingBullet.add(a);
+
 	}
 
 }

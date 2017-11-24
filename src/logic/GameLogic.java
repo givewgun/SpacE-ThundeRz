@@ -13,8 +13,7 @@ import window.SceneManager;
 
 public class GameLogic {
 
-	private Queue<Bullet> pendingEnemyBullet;
-	private Queue<Bullet> pendingPlayerBullet;
+	private Queue<Bullet> pendingBullet;
 
 	private List<Entity> gameObjectContainer;
 	private static final int FPS = 60;
@@ -43,8 +42,7 @@ public class GameLogic {
 		addNewObject(ebug);
 		this.canvas = canvas;
 
-		pendingEnemyBullet = new ConcurrentLinkedQueue<>();
-		pendingPlayerBullet = new ConcurrentLinkedQueue<>();
+		pendingBullet = new ConcurrentLinkedQueue<>();
 
 	}
 
@@ -61,8 +59,7 @@ public class GameLogic {
 	public void stopGame() {
 		this.isGameRunning = false;
 		this.gameObjectContainer.clear();
-		this.pendingEnemyBullet.clear();
-		this.pendingPlayerBullet.clear();
+		this.pendingBullet.clear();
 	}
 
 	private void gameLoop() {
@@ -87,14 +84,13 @@ public class GameLogic {
 		// TODO fill code
 		// need to check collide in the gameObjectContainer, but how ?
 		// to be further discussed
-		if (!pendingEnemyBullet.isEmpty()) {
-			gameObjectContainer.add(pendingEnemyBullet.poll());
+
+		while (!pendingBullet.isEmpty()) {
+			gameObjectContainer.add(pendingBullet.poll());
 
 		}
-		if (!pendingPlayerBullet.isEmpty()) {
-			gameObjectContainer.add(pendingPlayerBullet.poll());
+		System.out.println("Number of gameObject\t" + gameObjectContainer.size());
 
-		}
 		for (Entity i : gameObjectContainer) {
 			i.update();
 		}
@@ -116,14 +112,13 @@ public class GameLogic {
 		if (player.isDestroyed()) {
 			GameMain.stopGame();
 		}
+
 	}
 
 	public void addPendingBullet(Bullet a) {
-		if (a.side == 1) {
-			pendingPlayerBullet.add(a);
-		} else if (a.side == -1) {
-			pendingEnemyBullet.add(a);
-		}
+
+		pendingBullet.add(a);
+
 		canvas.addPendingBullet(a);
 	}
 }
