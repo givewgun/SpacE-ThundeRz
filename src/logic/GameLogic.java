@@ -89,7 +89,7 @@ public class GameLogic {
 			gameObjectContainer.add(pendingBullet.poll());
 
 		}
-		System.out.println("Number of gameObject\t" + gameObjectContainer.size());
+		//System.out.println("Number of gameObject\t" + gameObjectContainer.size());
 
 		for (Entity i : gameObjectContainer) {
 			i.update();

@@ -69,7 +69,8 @@ public class GameScreen extends Canvas {
 		while (!pendingBullet.isEmpty()) {
 			RenderableHolder.getInstance().add(pendingBullet.poll());
 		}
-		System.out.println("Number of Renderable object\t" + RenderableHolder.getInstance().getEntities().size());
+		// System.out.println("Number of Renderable object\t" +
+		// RenderableHolder.getInstance().getEntities().size());
 		GraphicsContext gc = this.getGraphicsContext2D();
 		Platform.runLater(new Runnable() {
 			@Override
@@ -83,16 +84,6 @@ public class GameScreen extends Canvas {
 				}
 			}
 		});
-
-		int i = 0;
-		while (i < RenderableHolder.getInstance().getEntities().size()) {
-			if (RenderableHolder.getInstance().getEntities().get(i).isDestroyed()) {
-				RenderableHolder.getInstance().getEntities().remove(i);
-			} else {
-				i++;
-			}
-
-		}
 
 	}
 

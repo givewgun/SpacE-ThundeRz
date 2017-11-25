@@ -18,7 +18,7 @@ import window.SceneManager;
 public class Player extends CollidableEntity implements IRenderable {
 	private Image playerImage = null;
 	GameLogic gameLogic;
-	private int bulletDelayTick = 0;
+	private int bulletDelayTick = 0, prevbulletTick = 0;
 	private double originalHp;
 
 	public Player(GameLogic gameLogic) {
@@ -103,13 +103,15 @@ public class Player extends CollidableEntity implements IRenderable {
 			// shoot a bullet
 			// to be further discussed
 
-			if (bulletDelayTick % 7 == 0) {
+			if (bulletDelayTick - prevbulletTick > 7) {
 				System.out.println("SHOOOOT");
 				gameLogic.addPendingBullet(new Bullet(x, y, 1, this));
 				RenderableHolder.laser.play();
+				prevbulletTick = bulletDelayTick;
 			}
-			bulletDelayTick++;
+
 		}
+		bulletDelayTick++;
 
 	}
 
