@@ -4,6 +4,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import input.CharacterInput;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -64,18 +65,25 @@ public class GameScreen extends Canvas {
 	}
 
 	public void updateAnimation() {
+
 		while (!pendingBullet.isEmpty()) {
 			RenderableHolder.getInstance().add(pendingBullet.poll());
 		}
 		System.out.println("Number of Renderable object\t" + RenderableHolder.getInstance().getEntities().size());
 		GraphicsContext gc = this.getGraphicsContext2D();
-		gc.setFill(Color.BLACK);
-		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
-			// System.out.println(entity.getZ());
-			if (entity.isVisible() && !entity.isDestroyed()) {
-				entity.draw(gc);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				gc.setFill(Color.BLACK);
+				for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
+					// System.out.println(entity.getZ());
+					if (entity.isVisible() && !entity.isDestroyed()) {
+						entity.draw(gc);
+					}
+				}
 			}
-		}
+		});
+
 		int i = 0;
 		while (i < RenderableHolder.getInstance().getEntities().size()) {
 			if (RenderableHolder.getInstance().getEntities().get(i).isDestroyed()) {
