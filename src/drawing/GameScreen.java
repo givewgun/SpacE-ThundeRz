@@ -53,7 +53,6 @@ public class GameScreen extends Canvas {
 				lastLoopStartTime += LOOP_TIME;
 
 				updateAnimation();
-				RenderableHolder.getInstance().update();
 			}
 
 			try {
@@ -66,15 +65,15 @@ public class GameScreen extends Canvas {
 
 	public void updateAnimation() {
 
-		while (!pendingBullet.isEmpty()) {
-			RenderableHolder.getInstance().add(pendingBullet.poll());
-		}
 		// System.out.println("Number of Renderable object\t" +
 		// RenderableHolder.getInstance().getEntities().size());
 		GraphicsContext gc = this.getGraphicsContext2D();
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				while (!pendingBullet.isEmpty()) {
+					RenderableHolder.getInstance().add(pendingBullet.poll());
+				}
 				gc.setFill(Color.BLACK);
 				for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
 					// System.out.println(entity.getZ());
@@ -82,6 +81,7 @@ public class GameScreen extends Canvas {
 						entity.draw(gc);
 					}
 				}
+				RenderableHolder.getInstance().update();
 			}
 		});
 
