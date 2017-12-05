@@ -28,10 +28,10 @@ public class Player extends CollidableEntity implements IRenderable {
 		super(1000, 20);
 		this.originalHp = this.hp;
 		this.z = 0;
-		
+
 		Random ran = new Random();
 		int x = ran.nextInt(6); // random player ship
-		playerImage = RenderableHolder.playerShip[x]; 
+		playerImage = RenderableHolder.playerShip[x];
 
 		this.gameLogic = gameLogic;
 
@@ -111,7 +111,7 @@ public class Player extends CollidableEntity implements IRenderable {
 
 			if (bulletDelayTick - prevbulletTick > 7) {
 				System.out.println("SHOOOOT");
-				gameLogic.addPendingBullet(new Bullet(x, y, 1, this));
+				gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, 1, 0, this));
 				RenderableHolder.laser.play();
 				prevbulletTick = bulletDelayTick;
 			}

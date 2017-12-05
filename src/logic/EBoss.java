@@ -11,7 +11,7 @@ import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class EBoss extends Enemy {
-	
+
 	private int originalHp;
 	private GameLogic gameLogic;
 	private int bulletDelayTick = 0;
@@ -37,15 +37,16 @@ public class EBoss extends Enemy {
 		// this.x = Math.sin(5 * now * 1e-9 + Math.toRadians(90)) *
 		// ((SceneManager.SCENE_WIDTH - this.width) / 2)
 		// + (SceneManager.SCENE_WIDTH - this.width) / 2.0;
-		this.y += this.speed;
+		if (this.y < 40) {
+			this.y += this.speed;
+		}
 		if (this.isOutOfScreen()) {
 			this.visible = false;
 			this.destroyed = true;
 		}
-
 		if (bulletDelayTick % 10 == 0) {
 			System.out.println("SHOOOOT");
-			gameLogic.addPendingBullet(new Bullet(x, y, -1, this));
+			gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, -1, 1, this));
 			RenderableHolder.laser.play();
 		}
 		bulletDelayTick++;
@@ -57,11 +58,11 @@ public class EBoss extends Enemy {
 		gc.drawImage(RenderableHolder.eBoss, x, y);
 		drawHpBar(gc);
 	}
-	
+
 	private void drawHpBar(GraphicsContext gc) {
 		double percentHp = this.hp / this.originalHp;
 		gc.setFill(Color.RED);
-		gc.fillRect(this.x + this.width/2 - this.width/4*percentHp , this.y - 20, this.width/2 * percentHp, 10);
+		gc.fillRect(this.x + this.width / 2 - this.width / 4 * percentHp, this.y - 20, this.width / 2 * percentHp, 10);
 
 	}
 

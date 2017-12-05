@@ -7,9 +7,11 @@ import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class EBig extends Enemy {
+	private int bulletDelayTick = 0;
 	private double yOffset;
+	private GameLogic gameLogic;
 
-	public EBig() {
+	public EBig(GameLogic gameLogic) {
 		super(200, 0.5);
 		this.width = RenderableHolder.eBig.getWidth();
 		this.height = RenderableHolder.eBig.getHeight();
@@ -19,7 +21,7 @@ public class EBig extends Enemy {
 		this.x = (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		this.y = -this.height;
 		this.collideDamage = 30;
-
+		this.gameLogic = gameLogic;
 	}
 
 	@Override
@@ -34,6 +36,14 @@ public class EBig extends Enemy {
 			this.visible = false;
 			this.destroyed = true;
 		}
+		if (bulletDelayTick % 20 == 0) {
+			gameLogic.addPendingBullet(new Bullet(x - 50, y - 20, 8, 15, -1, 4, this));
+			gameLogic.addPendingBullet(new Bullet(x + 50, y - 20, -8, 15, -1, 4, this));
+			gameLogic.addPendingBullet(new Bullet(x - 15, y, 4, 15, -1, 4, this));
+			gameLogic.addPendingBullet(new Bullet(x + 15, y, -4, 15, -1, 4, this));
+			RenderableHolder.laser.play();
+		}
+		bulletDelayTick++;
 
 	}
 
@@ -42,14 +52,14 @@ public class EBig extends Enemy {
 		// TODO Auto-generated method stub
 		gc.drawImage(RenderableHolder.eBig, x, y);
 	}
-	
+
 	@Override
 	public Shape getBoundary() {
 		// TODO Auto-generated method stub
 		Circle bound = new Circle();
-		bound.setCenterX(x+width/2);
-		bound.setCenterY(y+width/2);
-		bound.setRadius(width/2);
+		bound.setCenterX(x + width / 2);
+		bound.setCenterY(y + width / 2);
+		bound.setRadius(width / 2);
 		return bound;
 	}
 

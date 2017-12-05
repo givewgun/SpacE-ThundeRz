@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -9,13 +11,13 @@ public class EBug extends Enemy {
 
 	public EBug(double x) {
 		// TODO Auto-generated constructor stub
-		super(100, 1);
+		super(100, 2);
 		this.width = RenderableHolder.eBug.getWidth();
 		this.height = RenderableHolder.eBug.getHeight();
 		this.visible = true;
 		this.destroyed = false;
 		this.x = x;
-		this.y = -this.height;
+		this.y = -this.height - ThreadLocalRandom.current().nextDouble(500);
 		this.collideDamage = 10;
 	}
 
@@ -34,7 +36,7 @@ public class EBug extends Enemy {
 			this.destroyed = true;
 		}
 	}
-	
+
 	public Shape getBoundary() {
 		Rectangle bound = new Rectangle();
 		bound.setX(x);

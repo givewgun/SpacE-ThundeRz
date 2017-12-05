@@ -33,13 +33,19 @@ public class GameLogic {
 		RenderableHolder.getInstance().add(new Background());
 		player = new Player(this); /////////////////////////////////////
 		addNewObject(player);
-		ebig = new EBig();
+		ebig = new EBig(this);
 		addNewObject(ebig);
 		eboss = new EBoss(this);
 		addNewObject(eboss);
 		ebug = new EBug(
 				ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eBug.getWidth()));
 		addNewObject(ebug);
+		addNewObject(new EEyeball(this, ThreadLocalRandom.current()
+				.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eEyeball.getWidth())));
+		addNewObject(new EWing(this, ThreadLocalRandom.current()
+				.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eEyeball.getWidth())));
+		addNewObject(new ESquid(this, ThreadLocalRandom.current()
+				.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eEyeball.getWidth())));
 		this.canvas = canvas;
 
 		pendingBullet = new ConcurrentLinkedQueue<>();
@@ -89,7 +95,7 @@ public class GameLogic {
 			gameObjectContainer.add(pendingBullet.poll());
 
 		}
-		//System.out.println("Number of gameObject\t" + gameObjectContainer.size());
+		// System.out.println("Number of gameObject\t" + gameObjectContainer.size());
 
 		for (Entity i : gameObjectContainer) {
 			i.update();
