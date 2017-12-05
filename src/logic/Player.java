@@ -25,6 +25,7 @@ public class Player extends CollidableEntity implements IRenderable {
 		// TODO Auto-generated constructor stub
 		super(1000, 20);
 		this.originalHp = this.hp;
+		this.z = 0;
 		playerImage = RenderableHolder.ship3; // temporary player ship might be further implement in the future
 
 		this.gameLogic = gameLogic;

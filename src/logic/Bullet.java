@@ -11,12 +11,22 @@ import window.SceneManager;
 public class Bullet extends CollidableEntity {
 
 	private Image bulletType;
+	private static int zCounter = -500; // Bullet z is between -700 and -300 inclusive.
 
 	protected Bullet(double x, double y, int side, CollidableEntity type) {
 		super(0.001, 20);
 		// TODO Auto-generated constructor stub
 		this.collideDamage = 10;
 		this.side = side;
+		if (side == -1) {
+			this.z = zCounter - 200;
+		} else {
+			this.z = zCounter;
+		}
+		zCounter++;
+		if (zCounter > -300) {
+			zCounter = -500;
+		}
 		if (type instanceof Player) {
 			this.height = RenderableHolder.bullet.getHeight();
 			this.width = RenderableHolder.bullet.getWidth();
