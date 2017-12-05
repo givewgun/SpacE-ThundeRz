@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.Random;
+
 import drawing.GameScreen;
 import input.CharacterInput;
 import javafx.scene.canvas.GraphicsContext;
@@ -26,7 +28,10 @@ public class Player extends CollidableEntity implements IRenderable {
 		super(1000, 20);
 		this.originalHp = this.hp;
 		this.z = 0;
-		playerImage = RenderableHolder.ship3; // temporary player ship might be further implement in the future
+		
+		Random ran = new Random();
+		int x = ran.nextInt(6); // random player ship
+		playerImage = RenderableHolder.playerShip[x]; 
 
 		this.gameLogic = gameLogic;
 

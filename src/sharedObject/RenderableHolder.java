@@ -23,6 +23,7 @@ public class RenderableHolder {
 						background;
 	public static AudioClip bgm,laser;
 	
+	public static Image[] playerShip;
 	
 	
 	static {
@@ -45,11 +46,13 @@ public class RenderableHolder {
 	
 	public static void loadResource() {
 		ship1 = new Image(ClassLoader.getSystemResource("player/p1.gif").toString());
-		ship2 = new Image(ClassLoader.getSystemResource("player/p2.gif").toString());;
+		ship2 = new Image(ClassLoader.getSystemResource("player/p2.gif").toString());
 		ship3 = new Image(ClassLoader.getSystemResource("player/p3.gif").toString());
 		ship4 = new Image(ClassLoader.getSystemResource("player/p4.gif").toString());
 		ship5 = new Image(ClassLoader.getSystemResource("player/p5.gif").toString());
 		ship6 = new Image(ClassLoader.getSystemResource("player/p6.gif").toString());
+		
+		playerShip = new Image[] {ship1, ship2, ship3, ship4, ship5, ship6};
 		
 		eBig = new Image(ClassLoader.getSystemResource("enemy/eBig.gif").toString());
 		eBoss = new Image(ClassLoader.getSystemResource("enemy/eBoss.gif").toString());
