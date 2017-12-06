@@ -19,7 +19,7 @@ public class RenderableHolder {
 	public static Image ship1, ship2, ship3, ship4, ship5, eBig, eBoss, eEyeball, eBug, eSquid, eWing, bullet,
 			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, exploArr[], explo1, explo2,
 			explo3, explo4, background, hpBox, tripleGunBox;
-	public static AudioClip bgm, laser, explosion, explosion2;
+	public static AudioClip bgm, laser, explosion, explosion2, gameOverMusic, mainMenuMusic;
 	public static Font inGameFont;
 
 	public static Image[] playerShip;
@@ -84,6 +84,8 @@ public class RenderableHolder {
 		bgm = new AudioClip(ClassLoader.getSystemResource("song/Corneria.wav").toExternalForm());
 		laser = new AudioClip(ClassLoader.getSystemResource("song/laser.wav").toExternalForm());
 		laser.setVolume(0.35);
+		gameOverMusic = new AudioClip(ClassLoader.getSystemResource("song/GameOver.wav").toExternalForm());
+		mainMenuMusic = new AudioClip(ClassLoader.getSystemResource("song/MainMenu.mp3").toExternalForm());
 		explosion = new AudioClip(ClassLoader.getSystemResource("song/Explosion.wav").toExternalForm());
 		explosion2 = new AudioClip(ClassLoader.getSystemResource("song/Explosion2.wav").toExternalForm());
 
