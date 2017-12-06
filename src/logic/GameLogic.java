@@ -20,6 +20,8 @@ public class GameLogic {
 	private static final int FPS = 60;
 	private static final long LOOP_TIME = 1000000000 / FPS;
 
+	private int gameOverCountdown = 24;
+
 	private int maxEnemyCap;
 	public static int currentEnemyNum;
 	public static boolean isBossAlive;
@@ -133,6 +135,9 @@ public class GameLogic {
 			}
 		}
 		if (player.isDestroyed()) {
+			gameOverCountdown--;
+		}
+		if (gameOverCountdown == 0) {
 			GameMain.stopGame();
 		}
 
@@ -190,7 +195,7 @@ public class GameLogic {
 		if (this.nextItemsSpawnTime <= now) {
 			long rand = ThreadLocalRandom.current().nextLong(10000000000l, 30000000000l); // random the time next Box
 																							// will come out
-			System.out.println("\t\tNext Box in " + rand / 1000000000l+" seconds.");
+			System.out.println("\t\tNext Box in " + rand / 1000000000l + " seconds.");
 			this.nextItemsSpawnTime = now + rand;
 
 			double gachaPull = ThreadLocalRandom.current().nextDouble(100);

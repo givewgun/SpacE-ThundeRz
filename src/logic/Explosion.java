@@ -11,17 +11,17 @@ import javafx.util.Duration;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
-public class Explosion implements IRenderable{
-	private Image explosion;
+public class Explosion implements IRenderable {
+	private Image explosion[];
 	private AudioClip sound;
 	private int z;
 	private double x, y, width, height;
 	private int explosionTick;
 	private boolean destroyed, visible;
-	
+
 	public Explosion(double posx, double posy, double width, double height, int originalZ) {
 		// TODO Auto-generated constructor stub
-		explosion = RenderableHolder.explo1;
+		explosion = RenderableHolder.exploArr;
 		this.x = posx;
 		this.y = posy;
 		this.width = width;
@@ -42,8 +42,8 @@ public class Explosion implements IRenderable{
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-			gc.drawImage(explosion, x, y, width, height);
-			updateExplosion();
+		gc.drawImage(explosion[explosionTick/2], x, y, width, height);
+		updateExplosion();
 	}
 
 	@Override
@@ -57,16 +57,17 @@ public class Explosion implements IRenderable{
 		// TODO Auto-generated method stub
 		return visible;
 	}
-	
+
 	public void updateExplosion() {
 		// TODO Auto-generated method stub
 		explosionTick++;
-		if(explosionTick >= 50) {
+		if (explosionTick >= 24) {
 			this.visible = false;
 			this.destroyed = true;
 		}
-		
+
 	}
+
 	public void playSfx() {
 		sound.play();
 	}

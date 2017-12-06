@@ -17,8 +17,8 @@ public class RenderableHolder {
 	// various image plz check the image first before using (like to find its size /
 	// how it looks etc)
 	public static Image ship1, ship2, ship3, ship4, ship5, eBig, eBoss, eEyeball, eBug, eSquid, eWing, bullet,
-			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, explo1, explo2, explo3, explo4,
-			background, hpBox, tripleGunBox;
+			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, exploArr[], explo1, explo2,
+			explo3, explo4, background, hpBox, tripleGunBox;
 	public static AudioClip bgm, laser, explosion, explosion2;
 	public static Font inGameFont;
 
@@ -59,6 +59,10 @@ public class RenderableHolder {
 		eSquid = new Image(ClassLoader.getSystemResource("enemy/eSquid.gif").toString());
 		eWing = new Image(ClassLoader.getSystemResource("enemy/eWing.gif").toString());
 
+		exploArr = new Image[12];
+		for (int i = 0; i < 12; i++) {
+			exploArr[i] = new Image(ClassLoader.getSystemResource("explosion/explosion/" + i + ".gif").toString());
+		}
 		explo1 = new Image(ClassLoader.getSystemResource("explosion/explosion.gif").toString());
 		explo2 = new Image(ClassLoader.getSystemResource("explosion/exMissile.gif").toString());
 		explo3 = new Image(ClassLoader.getSystemResource("explosion/exCone.gif").toString());
@@ -82,8 +86,8 @@ public class RenderableHolder {
 		laser.setVolume(0.35);
 		explosion = new AudioClip(ClassLoader.getSystemResource("song/Explosion.wav").toExternalForm());
 		explosion2 = new AudioClip(ClassLoader.getSystemResource("song/Explosion2.wav").toExternalForm());
-		
-		explosions = new AudioClip[] {explosion, explosion2};
+
+		explosions = new AudioClip[] { explosion, explosion2 };
 
 		inGameFont = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(), 40);
 	}
