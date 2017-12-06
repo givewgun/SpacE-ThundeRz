@@ -83,6 +83,7 @@ public class GameLogic {
 		this.isGameRunning = false;
 		this.gameObjectContainer.clear();
 		this.pendingBullet.clear();
+		
 	}
 
 	private void gameLoop() {

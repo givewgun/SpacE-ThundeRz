@@ -2,6 +2,7 @@ package game;
 
 import java.util.Optional;
 
+import drawing.GameOverScreen;
 import drawing.GameScreen;
 import input.CharacterInput;
 import javafx.application.Platform;
@@ -19,6 +20,7 @@ public class GameMain {
 	private static GameScreen gameScreen;
 	private static BackgroundMusic gameBgm;
 	private static GameLogic gameLogic;
+	private static GameOverScreen gameOver;
 	
 
 	public static void newGame() {
@@ -43,21 +45,17 @@ public class GameMain {
 
 	public static void stopGame() {
 		stopGameLogicAndAnimation();
-		Platform.runLater(GameMain::displayResult);
+		Platform.runLater(GameMain::displayGameOverResult);
 		CharacterInput.clear();
 		RenderableHolder.getInstance().clear();
 		
 	}
 	
-	private static void displayResult() {
+	
+	private static void displayGameOverResult() {
 		// TODO fill code
-		Alert alert = new Alert(AlertType.NONE, "Game Over!\n Click Ok to return to restart.",ButtonType.OK);
-		Optional<ButtonType> result = alert.showAndWait();
-		 if (result.isPresent() && result.get() == ButtonType.OK) {
-		     SceneManager.gotoMainMenu();
-		 }
-		
-		
+		gameOver = new GameOverScreen();
+		SceneManager.gotoSceneOf(gameOver);
 	}
 
 }
