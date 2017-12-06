@@ -17,8 +17,7 @@ public class RenderableHolder {
 	// various image plz check the image first before using (like to find its size /
 	// how it looks etc)
 	public static Image ship1, ship2, ship3, ship4, ship5, eBig, eBoss, eEyeball, eBug, eSquid, eWing, bullet,
-			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, exploArr[], explo1, explo2,
-			explo3, explo4, background, hpBox, tripleGunBox;
+			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, exploArr[], background, hpBox, tripleGunBox;
 	public static AudioClip bgm, laser, explosion, explosion2, gameOverMusic, mainMenuMusic;
 	public static Font inGameFont;
 
@@ -63,10 +62,6 @@ public class RenderableHolder {
 		for (int i = 0; i < 12; i++) {
 			exploArr[i] = new Image(ClassLoader.getSystemResource("explosion/explosion/" + i + ".gif").toString());
 		}
-		explo1 = new Image(ClassLoader.getSystemResource("explosion/explosion.gif").toString());
-		explo2 = new Image(ClassLoader.getSystemResource("explosion/exMissile.gif").toString());
-		explo3 = new Image(ClassLoader.getSystemResource("explosion/exCone.gif").toString());
-		explo4 = new Image(ClassLoader.getSystemResource("explosion/exSmall.gif").toString());
 
 		bullet = new Image(ClassLoader.getSystemResource("bullet/bullet.png").toString());
 		missile = new Image(ClassLoader.getSystemResource("bullet/missile.gif").toString());
