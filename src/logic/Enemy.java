@@ -1,5 +1,6 @@
 package logic;
 
+import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public abstract class Enemy extends CollidableEntity {
@@ -26,6 +27,9 @@ public abstract class Enemy extends CollidableEntity {
 			if (!this.destroyed) {
 				calculateScore(this);
 				GameLogic.currentEnemyNum--;
+				Explosion e = new Explosion(x, y, width, height, z);
+				e.playSfx();
+				RenderableHolder.getInstance().add(e);
 			}
 			this.destroyed = true;
 			this.visible = false;

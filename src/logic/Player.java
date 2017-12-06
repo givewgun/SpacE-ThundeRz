@@ -32,7 +32,7 @@ public class Player extends CollidableEntity implements IRenderable {
 		this.z = 0;
 
 		Random ran = new Random();
-		int x = ran.nextInt(6); // random player ship
+		int x = ran.nextInt(5); // random player ship
 		playerImage = RenderableHolder.playerShip[x];
 
 		this.gameLogic = gameLogic;
@@ -154,6 +154,9 @@ public class Player extends CollidableEntity implements IRenderable {
 		if (this.hp <= 0) {
 			this.destroyed = true;
 			this.visible = false;
+			Explosion e = new Explosion(x, y, width, height, z);
+			e.playSfx();
+			RenderableHolder.getInstance().add(e);
 		}
 
 	}

@@ -16,13 +16,14 @@ public class RenderableHolder {
 	private Comparator<IRenderable> comparator;
 	// various image plz check the image first before using (like to find its size /
 	// how it looks etc)
-	public static Image ship1, ship2, ship3, ship4, ship5, ship6, eBig, eBoss, eEyeball, eBug, eSquid, eWing, bullet,
+	public static Image ship1, ship2, ship3, ship4, ship5, eBig, eBoss, eEyeball, eBug, eSquid, eWing, bullet,
 			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, explo1, explo2, explo3, explo4,
 			background, hpBox, tripleGunBox;
-	public static AudioClip bgm, laser;
+	public static AudioClip bgm, laser, explosion, explosion2;
 	public static Font inGameFont;
 
 	public static Image[] playerShip;
+	public static AudioClip[] explosions;
 
 	static {
 		loadResource();
@@ -48,9 +49,8 @@ public class RenderableHolder {
 		ship3 = new Image(ClassLoader.getSystemResource("player/p3.gif").toString());
 		ship4 = new Image(ClassLoader.getSystemResource("player/p4.gif").toString());
 		ship5 = new Image(ClassLoader.getSystemResource("player/p5.gif").toString());
-		ship6 = new Image(ClassLoader.getSystemResource("player/p6.gif").toString());
 
-		playerShip = new Image[] { ship1, ship2, ship3, ship4, ship5, ship6 };
+		playerShip = new Image[] { ship1, ship2, ship3, ship4, ship5 };
 
 		eBig = new Image(ClassLoader.getSystemResource("enemy/eBig.gif").toString());
 		eBoss = new Image(ClassLoader.getSystemResource("enemy/eBoss.gif").toString());
@@ -80,6 +80,10 @@ public class RenderableHolder {
 		bgm = new AudioClip(ClassLoader.getSystemResource("song/Corneria.wav").toExternalForm());
 		laser = new AudioClip(ClassLoader.getSystemResource("song/laser.wav").toExternalForm());
 		laser.setVolume(0.35);
+		explosion = new AudioClip(ClassLoader.getSystemResource("song/Explosion.wav").toExternalForm());
+		explosion2 = new AudioClip(ClassLoader.getSystemResource("song/Explosion2.wav").toExternalForm());
+		
+		explosions = new AudioClip[] {explosion, explosion2};
 
 		inGameFont = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(), 40);
 	}

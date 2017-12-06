@@ -33,9 +33,9 @@ public class EBoss extends Enemy {
 		// TODO Auto-generated method stub
 
 		long now = System.nanoTime();
-		// this.x = Math.sin(5 * now * 1e-9 + Math.toRadians(90)) *
-		// ((SceneManager.SCENE_WIDTH - this.width) / 2)
-		// + (SceneManager.SCENE_WIDTH - this.width) / 2.0;
+		this.x = Math.sin(5 * now * 1e-9 + Math.toRadians(90)) *
+				((SceneManager.SCENE_WIDTH - this.width) / 2)
+				+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
 		if (this.y < 40) {
 			this.y += this.speed;
 		}
@@ -44,7 +44,7 @@ public class EBoss extends Enemy {
 			this.destroyed = true;
 			gameLogic.isBossAlive = false;
 		}
-		if (bulletDelayTick % 10 == 0) {
+		if (bulletDelayTick % 30 == 0) {
 			System.out.println("SHOOOOT");
 			gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, -1, 1, this));
 			RenderableHolder.laser.play();
