@@ -2,9 +2,6 @@ package logic;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 import sharedObject.RenderableHolder;
@@ -27,6 +24,8 @@ public class EBoss extends Enemy {
 		this.y = -this.height;
 		this.collideDamage = 50;
 		this.gameLogic = gameLogic;
+		
+		gameLogic.isBossAlive = true;
 	}
 
 	@Override
@@ -43,6 +42,7 @@ public class EBoss extends Enemy {
 		if (this.isOutOfScreen()) {
 			this.visible = false;
 			this.destroyed = true;
+			gameLogic.isBossAlive = false;
 		}
 		if (bulletDelayTick % 10 == 0) {
 			System.out.println("SHOOOOT");

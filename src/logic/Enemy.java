@@ -13,6 +13,9 @@ public abstract class Enemy extends CollidableEntity {
 		if(zCounter>-100) {
 			zCounter=-200;
 		}
+		
+		GameLogic.currentEnemyNum++;
+		
 	}
 
 	public void onCollision(CollidableEntity others) {
@@ -21,17 +24,23 @@ public abstract class Enemy extends CollidableEntity {
 			this.destroyed = true;
 			this.visible = false;
 			calculateScore(this);
+			GameLogic.currentEnemyNum--;
 		}
 		System.out.println(this.getClass() + " is collided! by player " + this.hp);
 	}
 
 	public boolean isOutOfScreen() {
-		return (int) this.y > SceneManager.SCENE_HEIGHT;
+		if( (int) this.y > SceneManager.SCENE_HEIGHT ) {
+			GameLogic.currentEnemyNum--;
+			return true;
+		}
+		return false;
 	}
 	
 	private void calculateScore(Enemy e) {
 		if(e instanceof EBoss) {
 			Score.score += 30;
+			GameLogic.isBossAlive = false;
 		}
 		if(e instanceof EBug) {
 			Score.score += 1;
