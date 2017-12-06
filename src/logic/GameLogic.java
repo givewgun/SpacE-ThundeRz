@@ -83,7 +83,7 @@ public class GameLogic {
 		this.isGameRunning = false;
 		this.gameObjectContainer.clear();
 		this.pendingBullet.clear();
-		
+
 	}
 
 	private void gameLoop() {
@@ -203,6 +203,9 @@ public class GameLogic {
 			System.out.println("\t\tGacha: " + gachaPull);
 			if (gachaPull <= 40) {
 				addNewObject(new TripleGunBox(ThreadLocalRandom.current()
+						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.hpBox.getWidth())));
+			} else if (gachaPull <= 50) {
+				addNewObject(new MissileBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.hpBox.getWidth())));
 			} else {
 				addNewObject(new HPBox(ThreadLocalRandom.current()

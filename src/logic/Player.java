@@ -2,6 +2,9 @@ package logic;
 
 import java.util.Random;
 
+import com.sun.javafx.tk.FontLoader;
+import com.sun.javafx.tk.Toolkit;
+
 import drawing.GameScreen;
 import input.CharacterInput;
 import javafx.scene.canvas.GraphicsContext;
@@ -23,6 +26,7 @@ public class Player extends CollidableEntity implements IRenderable {
 	private int bulletDelayTick = 0, prevbulletTick = 0;
 	private double originalHp;
 	private long TripleGunTimeOut = 0;
+	private int missile = 0;
 	private int gunMode = 0;
 
 	public Player(GameLogic gameLogic) {
@@ -80,11 +84,43 @@ public class Player extends CollidableEntity implements IRenderable {
 
 	}
 
+	private void drawItemsStatus(GraphicsContext gc) {
+		gc.setFont(RenderableHolder.inGameFontSmall);
+		gc.setFill(Color.GREENYELLOW);
+		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
+		if (missile > 0 && gunMode == 1) {
+			String remainMissile = "Missile: " + Integer.toString(this.missile);
+			double remainMissile_width = fontLoader.computeStringWidth(remainMissile, gc.getFont());
+			double remainMissile_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
+			gc.fillText(remainMissile, 10, 10 + remainMissile_height);
+
+			String TripleGun = "Triple Gun: " + Long.toString((this.TripleGunTimeOut - System.nanoTime()) / 1000000000);
+			double TripleGun_width = fontLoader.computeStringWidth(TripleGun, gc.getFont());
+			double TripleGun_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
+			gc.fillText(TripleGun, 10, 20 + remainMissile_height + TripleGun_height);
+		} else if (missile > 0) {
+			String remainMissile = "Missile: " + Integer.toString(this.missile);
+			double remainMissile_width = fontLoader.computeStringWidth(remainMissile, gc.getFont());
+			double remainMissile_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
+			gc.fillText(remainMissile, 10, 10 + remainMissile_height);
+		} else if (gunMode == 1) {
+			String TripleGun = "Triple Gun: " + Long.toString((this.TripleGunTimeOut - System.nanoTime()) / 1000000000);
+			double TripleGun_width = fontLoader.computeStringWidth(TripleGun, gc.getFont());
+			double TripleGun_height = fontLoader.getFontMetrics(RenderableHolder.inGameFontSmall).getLineHeight();
+			gc.fillText(TripleGun, 10, 10 + TripleGun_height);
+		}
+	}
+
+	private void drawTripleGunCountdown(GraphicsContext gc) {
+
+	}
+
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(playerImage, x, y);
 		drawHpBar(gc);
+		drawItemsStatus(gc);
 
 	}
 
@@ -106,6 +142,17 @@ public class Player extends CollidableEntity implements IRenderable {
 		if (CharacterInput.getKeyPressed(KeyCode.LEFT)) {
 			// System.out.println("GO Left");
 			turn(false);
+		}
+		if (CharacterInput.getKeyPressed(KeyCode.CONTROL)) {
+			if (bulletDelayTick - prevbulletTick > 7) {
+				System.out.println("REMAIN MISSILE" + missile);
+				if (this.missile > 0) {
+					gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, 1, 6, this));
+					RenderableHolder.missileLaunch.play();
+					missile--;
+					prevbulletTick = bulletDelayTick;
+				}
+			}
 		}
 		if (CharacterInput.getKeyPressed(KeyCode.SPACE)) {
 			// shoot a bullet
@@ -149,6 +196,9 @@ public class Player extends CollidableEntity implements IRenderable {
 		if (others instanceof TripleGunBox) {
 			this.gunMode = 1;
 			this.TripleGunTimeOut = System.nanoTime() + 10000000000l; // 10 seconds timeout
+		}
+		if (others instanceof MissileBox) {
+			missile++;
 		}
 		// to be further discussed (sound effect etc)
 		if (this.hp <= 0) {

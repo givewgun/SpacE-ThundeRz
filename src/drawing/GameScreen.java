@@ -97,7 +97,8 @@ public class GameScreen extends Canvas {
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
 
-				if (event.getCode().isArrowKey() || event.getCode() == KeyCode.SPACE) {
+				if (event.getCode().isArrowKey() || event.getCode() == KeyCode.SPACE
+						|| event.getCode() == KeyCode.CONTROL) {
 					CharacterInput.setKeyPressed(event.getCode(), true);
 					System.out.println("Adddddd");
 				}
@@ -108,7 +109,8 @@ public class GameScreen extends Canvas {
 			@Override
 			public void handle(KeyEvent event) {
 				// TODO Auto-generated method stub
-				if (event.getCode().isArrowKey() || event.getCode() == KeyCode.SPACE) {
+				if (event.getCode().isArrowKey() || event.getCode() == KeyCode.SPACE
+						|| event.getCode() == KeyCode.CONTROL) {
 					CharacterInput.setKeyPressed(event.getCode(), false);
 				}
 

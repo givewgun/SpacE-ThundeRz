@@ -17,9 +17,10 @@ public class RenderableHolder {
 	// various image plz check the image first before using (like to find its size /
 	// how it looks etc)
 	public static Image ship1, ship2, ship3, ship4, ship5, eBig, eBoss, eEyeball, eBug, eSquid, eWing, bullet,
-			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, exploArr[], background, hpBox, tripleGunBox;
-	public static AudioClip bgm, laser, explosion, explosion2, gameOverMusic, mainMenuMusic;
-	public static Font inGameFont;
+			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, exploArr[], background, hpBox,
+			tripleGunBox, missileBox;
+	public static AudioClip bgm, laser, explosion, explosion2, gameOverMusic, mainMenuMusic, missileLaunch;
+	public static Font inGameFont, inGameFontSmall;
 
 	public static Image[] playerShip;
 	public static AudioClip[] explosions;
@@ -64,7 +65,7 @@ public class RenderableHolder {
 		}
 
 		bullet = new Image(ClassLoader.getSystemResource("bullet/bullet.png").toString());
-		missile = new Image(ClassLoader.getSystemResource("bullet/missile.gif").toString());
+		missile = new Image(ClassLoader.getSystemResource("bullet/missile.png").toString());
 		bossBullet = new Image(ClassLoader.getSystemResource("bullet/bossBullet.gif").toString());
 		roundBulletB = new Image(ClassLoader.getSystemResource("bullet/roundBulletB.png").toString());
 		roundBulletY = new Image(ClassLoader.getSystemResource("bullet/roundBulletY.png").toString());
@@ -75,6 +76,7 @@ public class RenderableHolder {
 
 		hpBox = new Image(ClassLoader.getSystemResource("items/hpBox.png").toString());
 		tripleGunBox = new Image(ClassLoader.getSystemResource("items/tripleGunBox.png").toString());
+		missileBox = new Image(ClassLoader.getSystemResource("items/missileBox.png").toString());
 
 		bgm = new AudioClip(ClassLoader.getSystemResource("song/Corneria.wav").toExternalForm());
 		laser = new AudioClip(ClassLoader.getSystemResource("song/laser.wav").toExternalForm());
@@ -83,10 +85,12 @@ public class RenderableHolder {
 		mainMenuMusic = new AudioClip(ClassLoader.getSystemResource("song/MainMenu.mp3").toExternalForm());
 		explosion = new AudioClip(ClassLoader.getSystemResource("song/Explosion.wav").toExternalForm());
 		explosion2 = new AudioClip(ClassLoader.getSystemResource("song/Explosion2.wav").toExternalForm());
+		missileLaunch = new AudioClip(ClassLoader.getSystemResource("song/MissileLaunch.wav").toExternalForm());
 
 		explosions = new AudioClip[] { explosion, explosion2 };
 
 		inGameFont = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(), 40);
+		inGameFontSmall = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(), 20);
 	}
 
 	public void add(IRenderable entity) {
