@@ -11,11 +11,14 @@ public abstract class CollidableEntity extends Entity {
 	}
 
 	protected boolean collideWith(CollidableEntity other) {
-		Shape intersect = Shape.intersect(this.getBoundary(), other.getBoundary());
 		if (this instanceof Bullet && other instanceof Bullet) {
 			return false;
 		}
+		if((this instanceof Bullet && other instanceof Items)||(this instanceof Items && other instanceof Bullet)) {
+			return false;
+		}
 		if (this.side != other.side) {
+			Shape intersect = Shape.intersect(this.getBoundary(), other.getBoundary());
 			return (intersect.getBoundsInLocal().getWidth() != -1);
 		}
 		return false;

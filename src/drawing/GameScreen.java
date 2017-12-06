@@ -75,12 +75,15 @@ public class GameScreen extends Canvas {
 					RenderableHolder.getInstance().add(pendingBullet.poll());
 				}
 				gc.setFill(Color.BLACK);
-				for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
-					// System.out.println(entity.getZ());
-					if (entity.isVisible() && !entity.isDestroyed()) {
-						entity.draw(gc);
+				synchronized (RenderableHolder.getInstance().getEntities()) {
+					for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
+						// System.out.println(entity.getZ());
+						if (entity.isVisible() && !entity.isDestroyed()) {
+							entity.draw(gc);
+						}
 					}
 				}
+
 				RenderableHolder.getInstance().update();
 			}
 		});

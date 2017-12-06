@@ -22,6 +22,8 @@ public class Player extends CollidableEntity implements IRenderable {
 	GameLogic gameLogic;
 	private int bulletDelayTick = 0, prevbulletTick = 0;
 	private double originalHp;
+	private long TripleGunTimeOut = 0;
+	private int gunMode = 0;
 
 	public Player(GameLogic gameLogic) {
 		// TODO Auto-generated constructor stub
@@ -111,13 +113,26 @@ public class Player extends CollidableEntity implements IRenderable {
 
 			if (bulletDelayTick - prevbulletTick > 7) {
 				System.out.println("SHOOOOT");
-				gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, 1, 0, this));
-				RenderableHolder.laser.play();
+				if (gunMode == 0) {
+					gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, 1, 0, this));
+					RenderableHolder.laser.play();
+				} else if (gunMode == 1) {
+					gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, 1, 0, this));
+					RenderableHolder.laser.play();
+					gameLogic.addPendingBullet(new Bullet(x - 20, y, 0, 20, 1, 0, this));
+					RenderableHolder.laser.play();
+					gameLogic.addPendingBullet(new Bullet(x + 20, y, 0, 20, 1, 0, this));
+					RenderableHolder.laser.play();
+				}
 				prevbulletTick = bulletDelayTick;
 			}
 
 		}
 		bulletDelayTick++;
+		if (this.TripleGunTimeOut <= System.nanoTime()) {
+			this.TripleGunTimeOut = 0;
+			gunMode = 0;
+		}
 
 	}
 
@@ -125,6 +140,16 @@ public class Player extends CollidableEntity implements IRenderable {
 	public void onCollision(CollidableEntity others) {
 		// TODO Auto-generated method stub
 		this.hp -= others.collideDamage;
+		if (others instanceof HPBox) {
+			this.hp += ((HPBox) others).getHPStorage();
+			if (this.hp > this.originalHp) {
+				this.hp = this.originalHp;
+			}
+		}
+		if (others instanceof TripleGunBox) {
+			this.gunMode = 1;
+			this.TripleGunTimeOut = System.nanoTime() + 10000000000l; // 10 seconds timeout
+		}
 		// to be further discussed (sound effect etc)
 		if (this.hp <= 0) {
 			this.destroyed = true;

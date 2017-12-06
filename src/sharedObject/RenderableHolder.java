@@ -18,7 +18,7 @@ public class RenderableHolder {
 	// how it looks etc)
 	public static Image ship1, ship2, ship3, ship4, ship5, ship6, eBig, eBoss, eEyeball, eBug, eSquid, eWing, bullet,
 			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, explo1, explo2, explo3, explo4,
-			background;
+			background, hpBox, tripleGunBox;
 	public static AudioClip bgm, laser;
 	public static Font inGameFont;
 
@@ -29,7 +29,7 @@ public class RenderableHolder {
 	}
 
 	public RenderableHolder() {
-		entities = new ArrayList<>();
+		entities = Collections.synchronizedList(new ArrayList<>());
 		comparator = (IRenderable o1, IRenderable o2) -> {
 			if (o1.getZ() > o2.getZ()) {
 				return 1;
@@ -74,11 +74,14 @@ public class RenderableHolder {
 
 		background = new Image(ClassLoader.getSystemResource("background/bg2.png").toString());
 
+		hpBox = new Image(ClassLoader.getSystemResource("items/hpBox.png").toString());
+		tripleGunBox = new Image(ClassLoader.getSystemResource("items/tripleGunBox.png").toString());
+
 		bgm = new AudioClip(ClassLoader.getSystemResource("song/Corneria.wav").toExternalForm());
 		laser = new AudioClip(ClassLoader.getSystemResource("song/laser.wav").toExternalForm());
 		laser.setVolume(0.35);
-		
-		inGameFont = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(),40);
+
+		inGameFont = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(), 40);
 	}
 
 	public void add(IRenderable entity) {
