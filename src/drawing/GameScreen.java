@@ -84,7 +84,6 @@ public class GameScreen extends Canvas {
 				RenderableHolder.getInstance().update();
 			}
 		});
-
 	}
 
 	private void addKeyEventHandler() {

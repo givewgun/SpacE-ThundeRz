@@ -7,6 +7,7 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import javafx.scene.text.Font;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
@@ -19,6 +20,7 @@ public class RenderableHolder {
 			bossBullet, roundBulletB, roundBulletY, roundBulletR, roundBulletP, missile, explo1, explo2, explo3, explo4,
 			background;
 	public static AudioClip bgm, laser;
+	public static Font inGameFont;
 
 	public static Image[] playerShip;
 
@@ -75,6 +77,8 @@ public class RenderableHolder {
 		bgm = new AudioClip(ClassLoader.getSystemResource("song/Corneria.wav").toExternalForm());
 		laser = new AudioClip(ClassLoader.getSystemResource("song/laser.wav").toExternalForm());
 		laser.setVolume(0.35);
+		
+		inGameFont = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(),40);
 	}
 
 	public void add(IRenderable entity) {

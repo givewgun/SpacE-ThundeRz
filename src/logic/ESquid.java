@@ -48,7 +48,7 @@ public class ESquid extends Enemy {
 			this.visible = false;
 			this.destroyed = true;
 		}
-		if (bulletDelayTick % 15 == 0) {
+		if (bulletDelayTick % 50 == 0) {
 			gameLogic.addPendingBullet(new Bullet(x, y, 0, 10, -1, 5, this));
 			RenderableHolder.laser.play();
 		}

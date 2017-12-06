@@ -19,6 +19,7 @@ public class GameMain {
 	private static GameScreen gameScreen;
 	private static BackgroundMusic gameBgm;
 	private static GameLogic gameLogic;
+	
 
 	public static void newGame() {
 		// TODO fill code

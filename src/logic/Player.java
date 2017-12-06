@@ -165,7 +165,7 @@ public class Player extends CollidableEntity implements IRenderable {
 		Circle bound = new Circle();
 		bound.setCenterX(x + width / 2);
 		bound.setCenterY(y + height / 2);
-		bound.setRadius(width / 2);
+		bound.setRadius(width / 4);
 		return bound;
 	}
 

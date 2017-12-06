@@ -31,6 +31,7 @@ public class GameLogic {
 		this.gameObjectContainer = new ArrayList<Entity>();
 
 		RenderableHolder.getInstance().add(new Background());
+		RenderableHolder.getInstance().add(new Score());
 		player = new Player(this); /////////////////////////////////////
 		addNewObject(player);
 		ebig = new EBig(this);
