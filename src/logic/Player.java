@@ -139,14 +139,13 @@ public class Player extends CollidableEntity implements IRenderable {
 			// System.out.println("GO Left");
 			turn(false);
 		}
-		if (CharacterInput.getKeyPressed(KeyCode.CONTROL)) {
-			if (bulletDelayTick - prevbulletTick > 7) {
-				if (this.missile > 0) {
-					gameLogic.addPendingBullet(new Bullet(x, y, 0, 30, 1, 6, this));
-					RenderableHolder.missileLaunch.play();
-					missile--;
-					prevbulletTick = bulletDelayTick;
-				}
+		if (CharacterInput.getTriggeredCtrl().poll() == KeyCode.CONTROL) {
+
+			if (this.missile > 0) {
+				gameLogic.addPendingBullet(new Bullet(x, y, 0, 30, 1, 6, this));
+				RenderableHolder.missileLaunch.play();
+				missile--;
+
 			}
 		}
 		if (CharacterInput.getKeyPressed(KeyCode.SPACE)) {
