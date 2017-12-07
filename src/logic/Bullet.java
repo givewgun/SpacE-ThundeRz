@@ -88,16 +88,8 @@ public class Bullet extends CollidableEntity {
 		// if (side == 1) {
 		// gc.setFill(Color.WHITE);
 		// gc.fillRect(x, y, width, height);
-		if (type == 7) {
-			gc.drawImage(RenderableHolder.exploArr[explosionTick], x, y, width, height);
-			explosionTick++;
-			if (explosionTick >= 12) {
-				this.visible = false;
-				this.destroyed = true;
-			}
-		} else {
-			gc.drawImage(bulletSprite, x, y);
-		}
+
+		gc.drawImage(bulletSprite, x, y);
 
 	}
 
@@ -106,7 +98,7 @@ public class Bullet extends CollidableEntity {
 		// TODO Auto-generated method stub
 		if (type == 6) {
 			exploding = true;
-			RenderableHolder.explosions[new Random().nextInt(2)].play();
+			this.visible = false;
 
 		} else if (type == 7) {
 			// do nothing
@@ -121,6 +113,8 @@ public class Bullet extends CollidableEntity {
 		// TODO Auto-generated method stub
 		if (type == 7) {
 			this.collideDamage = 0;
+			this.destroyed = true;
+			this.visible = false;
 		}
 		if (exploding) {
 			type = 7;
@@ -129,6 +123,9 @@ public class Bullet extends CollidableEntity {
 			this.width = 300;
 			this.height = 300;
 			this.collideDamage = 100;
+			Explosion e = new Explosion(x, y, width, height, z);
+			e.playSfx();
+			RenderableHolder.getInstance().add(e);
 			exploding = false;
 		}
 		if (type != 7) {
