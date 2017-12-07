@@ -155,12 +155,12 @@ public class GameLogic {
 		Random r = new Random();
 		this.maxEnemyCap = 5 + stageLevel;
 		// check score to spawn boss first
-		if ((Score.score >= 100 * stageLevel && Score.score <= 100 * stageLevel * 1.25) && Score.score != 0
+		if ((Score.score >= 100 * stageLevel * 1.5 && Score.score <= 100 * stageLevel * 1.5 + 30) && Score.score != 0
 				&& !isBossAlive) {
 			eboss = new EBoss(this);
 			addNewObject(eboss);
 		}
-		if (Score.score >= 100 * stageLevel) {
+		if (Score.score >= 100 * stageLevel * 1.5) {
 			stageLevel++;
 		}
 
