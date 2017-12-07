@@ -2,12 +2,9 @@ package logic;
 
 import java.util.Random;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
-import javafx.util.Duration;
 import sharedObject.IRenderable;
 import sharedObject.RenderableHolder;
 
@@ -28,7 +25,7 @@ public class Explosion implements IRenderable {
 		this.height = height;
 		Random random = new Random();
 		sound = RenderableHolder.explosions[random.nextInt(2)];
-		this.z = Math.abs(originalZ) + 1; // + 1 to prevent bug 
+		this.z = Math.abs(originalZ) + 1; // + 1 to prevent bug
 		this.visible = true;
 		this.destroyed = false;
 	}
@@ -42,7 +39,7 @@ public class Explosion implements IRenderable {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(explosion[explosionTick/2], x, y, width, height);
+		gc.drawImage(explosion[explosionTick / 2], x, y, width, height);
 		updateExplosion();
 	}
 

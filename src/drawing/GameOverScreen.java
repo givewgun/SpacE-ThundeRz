@@ -1,6 +1,5 @@
 package drawing;
 
-
 import game.GameMain;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -16,12 +15,14 @@ import logic.Score;
 import sharedObject.RenderableHolder;
 import window.SceneManager;
 
-public class GameOverScreen extends Canvas{
-	
-	private static final Font TITLE_FONT = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(),70);
-	private static final Font SCORE_FONT = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(),40);
+public class GameOverScreen extends Canvas {
+
+	private static final Font TITLE_FONT = Font
+			.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(), 70);
+	private static final Font SCORE_FONT = Font
+			.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(), 40);
 	private AudioClip music = RenderableHolder.gameOverMusic;
-	
+
 	public GameOverScreen() {
 		super(SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 
@@ -38,7 +39,7 @@ public class GameOverScreen extends Canvas{
 		String score = "Your score is : " + Score.score;
 		gc.fillText(score, SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 2 / 4);
 		gc.setFill(Color.DODGERBLUE);
-		gc.fillText("Press Enter to retry",SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 3 / 4);
+		gc.fillText("Press Enter to retry", SceneManager.SCENE_WIDTH / 2, SceneManager.SCENE_HEIGHT * 3 / 4);
 		this.addKeyEventHandler();
 	}
 

@@ -1,15 +1,9 @@
 package game;
 
-import java.util.Optional;
-
 import drawing.GameOverScreen;
 import drawing.GameScreen;
 import input.CharacterInput;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
-import logic.Background;
 import logic.GameLogic;
 import sharedObject.RenderableHolder;
 import soundtrack.BackgroundMusic;
@@ -21,11 +15,10 @@ public class GameMain {
 	private static BackgroundMusic gameBgm;
 	private static GameLogic gameLogic;
 	private static GameOverScreen gameOver;
-	
 
 	public static void newGame() {
 		// TODO fill code
-		
+
 		gameScreen = new GameScreen(SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 		gameBgm = new BackgroundMusic();
 		gameLogic = new GameLogic(gameScreen);
@@ -48,10 +41,9 @@ public class GameMain {
 		Platform.runLater(GameMain::displayGameOverResult);
 		CharacterInput.clear();
 		RenderableHolder.getInstance().clear();
-		
+
 	}
-	
-	
+
 	private static void displayGameOverResult() {
 		// TODO fill code
 		gameOver = new GameOverScreen();

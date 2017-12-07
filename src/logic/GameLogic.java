@@ -40,17 +40,17 @@ public class GameLogic {
 	public GameLogic(GameScreen canvas) {
 		this.gameObjectContainer = new ArrayList<Entity>();
 		this.maxEnemyCap = 5; // default enemy capacity
-		this.currentEnemyNum = 0;
+		GameLogic.currentEnemyNum = 0;
 		stageLevel = 1;
 		GameLogic.isBossAlive = false;
 
 		RenderableHolder.getInstance().add(new Background());
 		RenderableHolder.getInstance().add(new Score());
-		player = new Player(this); 
+		player = new Player(this);
 		addNewObject(player);
 
 		spawnEnemy();
-		
+
 		this.canvas = canvas;
 
 		pendingBullet = new ConcurrentLinkedQueue<>();
@@ -150,12 +150,13 @@ public class GameLogic {
 			stageLevel++;
 		}
 
-		//System.out.println("cap" + this.maxEnemyCap + " current " + this.currentEnemyNum);
+		// System.out.println("cap" + this.maxEnemyCap + " current " +
+		// this.currentEnemyNum);
 
-		if (this.currentEnemyNum < this.maxEnemyCap) {
+		if (GameLogic.currentEnemyNum < this.maxEnemyCap) {
 			int chance = r.nextInt(100) - 1000 / (Score.score + 1); // difficulty factor , +1 to prevent zero when start
 																	// new game
-			//System.out.println(" chance " + chance);
+			// System.out.println(" chance " + chance);
 			if (chance < 40) {
 				ebug = new EBug(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eBug.getWidth()));
@@ -182,11 +183,11 @@ public class GameLogic {
 		if (this.nextItemsSpawnTime <= now) {
 			long rand = ThreadLocalRandom.current().nextLong(10000000000l, 30000000000l); // random the time next Box
 																							// will come out
-			//System.out.println("\t\tNext Box in " + rand / 1000000000l + " seconds.");
+			// System.out.println("\t\tNext Box in " + rand / 1000000000l + " seconds.");
 			this.nextItemsSpawnTime = now + rand;
 
 			double gachaPull = ThreadLocalRandom.current().nextDouble(100);
-			//System.out.println("\t\tGacha: " + gachaPull);
+			// System.out.println("\t\tGacha: " + gachaPull);
 			if (gachaPull <= 40) {
 				addNewObject(new TripleGunBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.hpBox.getWidth())));
@@ -198,6 +199,6 @@ public class GameLogic {
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.hpBox.getWidth())));
 			}
 		}
-		
+
 	}
 }

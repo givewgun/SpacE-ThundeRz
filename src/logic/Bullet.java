@@ -1,7 +1,5 @@
 package logic;
 
-import java.util.Random;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
@@ -16,7 +14,6 @@ public class Bullet extends CollidableEntity {
 	private int type;
 	private static int zCounter = -500; // Bullet z is between -700 and -300 inclusive.
 	private int speedX, speedY;
-	private int explosionTick = 0;
 	private boolean exploding = false;
 
 	protected Bullet(double x, double y, int speedX, int speedY, int side, int type, CollidableEntity e) {
@@ -100,7 +97,7 @@ public class Bullet extends CollidableEntity {
 		} else {
 			this.hp -= others.collideDamage;
 		}
-		//System.out.println("Bullet hit!");
+		// System.out.println("Bullet hit!");
 	}
 
 	@Override

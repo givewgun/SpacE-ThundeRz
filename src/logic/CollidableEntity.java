@@ -14,7 +14,7 @@ public abstract class CollidableEntity extends Entity {
 		if (this instanceof Bullet && other instanceof Bullet) {
 			return false;
 		}
-		if((this instanceof Bullet && other instanceof Items)||(this instanceof Items && other instanceof Bullet)) {
+		if ((this instanceof Bullet && other instanceof Items) || (this instanceof Items && other instanceof Bullet)) {
 			return false;
 		}
 		if (this.side != other.side) {

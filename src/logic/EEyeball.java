@@ -1,7 +1,5 @@
 package logic;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;

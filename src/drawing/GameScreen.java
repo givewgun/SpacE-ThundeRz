@@ -100,7 +100,7 @@ public class GameScreen extends Canvas {
 				if (event.getCode().isArrowKey() || event.getCode() == KeyCode.SPACE
 						|| event.getCode() == KeyCode.CONTROL) {
 					CharacterInput.setKeyPressed(event.getCode(), true);
-					//System.out.println("Adddddd");
+					// System.out.println("Adddddd");
 				}
 			}
 		});

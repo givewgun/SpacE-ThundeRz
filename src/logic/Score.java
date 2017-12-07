@@ -3,7 +3,6 @@ package logic;
 import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
 
-import game.GameMain;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import sharedObject.IRenderable;
@@ -12,7 +11,7 @@ import window.SceneManager;
 
 public class Score implements IRenderable {
 	public static int score;
-	
+
 	public Score() {
 		// TODO Auto-generated constructor stub
 		score = 0;
@@ -29,7 +28,7 @@ public class Score implements IRenderable {
 		// TODO Auto-generated method stub
 		gc.setFont(RenderableHolder.inGameFont);
 		gc.setFill(Color.GREENYELLOW);
-		String score = "Score: " + Integer.toString(this.score);
+		String score = "Score: " + Integer.toString(Score.score);
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		double score_width = fontLoader.computeStringWidth(score, gc.getFont());
 		double score_height = fontLoader.getFontMetrics(RenderableHolder.inGameFont).getLineHeight();

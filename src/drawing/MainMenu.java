@@ -1,6 +1,5 @@
 package drawing;
 
-
 import game.GameMain;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -16,10 +15,12 @@ import sharedObject.RenderableHolder;
 import window.SceneManager;
 
 public class MainMenu extends Canvas {
-	private static final Font TITLE_FONT = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(),70);
-	private static final Font MENU_FONT = Font.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(),40);
+	private static final Font TITLE_FONT = Font
+			.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(), 70);
+	private static final Font MENU_FONT = Font
+			.loadFont(ClassLoader.getSystemResource("font/Digital_tech.otf").toString(), 40);
 	private AudioClip music = RenderableHolder.mainMenuMusic;
-	
+
 	public MainMenu() {
 		super(SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 

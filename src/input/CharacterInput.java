@@ -1,9 +1,7 @@
 package input;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Queue;
-import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javafx.scene.input.KeyCode;
@@ -39,14 +37,14 @@ public class CharacterInput {
 				keyPressed.remove(keycode);
 			}
 		}
-		//System.out.println(keyPressed);
+		// System.out.println(keyPressed);
 	}
 
 	public static Queue<KeyCode> getTriggeredCtrl() {
 		return triggeredCtrl;
 	}
 
-	//need when starting/reseting a new game
+	// need when starting/reseting a new game
 	public static void clear() {
 		keyPressed.clear();
 		triggeredCtrl.clear();
