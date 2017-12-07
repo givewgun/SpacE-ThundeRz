@@ -119,11 +119,11 @@ public class Bullet extends CollidableEntity {
 		if (exploding) {
 			type = 7;
 			this.x = x + (this.width / 2) - 150;
-			this.y = y + (this.height / 2) - 150;
+			this.y = y - 145;
 			this.width = 300;
 			this.height = 300;
 			this.collideDamage = 100;
-			Explosion e = new Explosion(x, y, width, height, z);
+			Explosion e = new Explosion(x - 50, y - 50 - 40, width + 100, height + 100, z);
 			e.playSfx();
 			RenderableHolder.getInstance().add(e);
 			exploding = false;
