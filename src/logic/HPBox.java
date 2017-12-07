@@ -9,8 +9,8 @@ public class HPBox extends Items {
 	private double HPStorage;
 
 	protected HPBox(double x) {
-		super(ThreadLocalRandom.current().nextDouble(1,5));
-		this.HPStorage = ThreadLocalRandom.current().nextDouble(500);
+		super(ThreadLocalRandom.current().nextDouble(1, 5));
+		this.HPStorage = ThreadLocalRandom.current().nextDouble(50, 500);
 		this.width = RenderableHolder.hpBox.getWidth();
 		this.height = RenderableHolder.hpBox.getHeight();
 		this.visible = true;
