@@ -39,7 +39,7 @@ public class Background implements IRenderable{
 	public void updateBackground() {
 		currentY += scrollSpeed;
 		if(currentY >= screenHeight) {
-			//System.out.println("µ¡¢Íºººº");  
+			//System.out.println("bound check");  
 			currentY = 0;
 		}
 	}

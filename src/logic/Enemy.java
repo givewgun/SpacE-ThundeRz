@@ -35,7 +35,7 @@ public abstract class Enemy extends CollidableEntity {
 			this.visible = false;
 
 		}
-		System.out.println(this.getClass() + " is collided! by player " + this.hp);
+		//System.out.println(this.getClass() + " is collided! by player " + this.hp);
 	}
 
 	public boolean isOutOfScreen() {

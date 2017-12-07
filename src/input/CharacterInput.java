@@ -12,13 +12,6 @@ public class CharacterInput {
 	// TODO read plz
 	// use polling technique
 
-	/**
-	 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Gun->I think we have no need to use set
-	 * to check weather we have pressed the key or not because if we pressed the key
-	 * for some time the spaceship will constantly move
-	 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	 */
-
 	private static ArrayList<KeyCode> keyPressed = new ArrayList<>();
 	private static boolean isHoldingCtrlKey = false;
 	private static Queue<KeyCode> triggeredCtrl = new ConcurrentLinkedQueue<>();
@@ -46,14 +39,14 @@ public class CharacterInput {
 				keyPressed.remove(keycode);
 			}
 		}
-		System.out.println(keyPressed);
+		//System.out.println(keyPressed);
 	}
 
 	public static Queue<KeyCode> getTriggeredCtrl() {
 		return triggeredCtrl;
 	}
 
-	// might need when starting/reseting a new game
+	//need when starting/reseting a new game
 	public static void clear() {
 		keyPressed.clear();
 		triggeredCtrl.clear();

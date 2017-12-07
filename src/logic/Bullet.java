@@ -85,12 +85,7 @@ public class Bullet extends CollidableEntity {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		// if (side == 1) {
-		// gc.setFill(Color.WHITE);
-		// gc.fillRect(x, y, width, height);
-
 		gc.drawImage(bulletSprite, x, y);
-
 	}
 
 	@Override
@@ -105,7 +100,7 @@ public class Bullet extends CollidableEntity {
 		} else {
 			this.hp -= others.collideDamage;
 		}
-		System.out.println("Bullet hit!");
+		//System.out.println("Bullet hit!");
 	}
 
 	@Override

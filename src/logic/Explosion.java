@@ -28,7 +28,7 @@ public class Explosion implements IRenderable {
 		this.height = height;
 		Random random = new Random();
 		sound = RenderableHolder.explosions[random.nextInt(2)];
-		this.z = Math.abs(originalZ) + 1; // to prevent bug (i don't know where it's bugged but I'm guessing it's here)
+		this.z = Math.abs(originalZ) + 1; // + 1 to prevent bug 
 		this.visible = true;
 		this.destroyed = false;
 	}

@@ -23,28 +23,7 @@ public class Main extends Application {
 			SceneManager.gotoMainMenu();
 			primaryStage.setTitle("Space Thunderz");
 			primaryStage.centerOnScreen();
-			/*
-			//testing
-			StackPane root = new StackPane();                       //move to/replace by SceneManager
-			Scene scene = new Scene(root,600,800);                  //move to SceneManager gotoSceneOf()
-			primaryStage.setScene(scene);                           //move to/replace by SceneManager
-			primaryStage.setTitle("Space Thunderz");                //still here...
-			//I have no idea  what i'm doing
-			RenderableHolder.getInstance().add(new background());   //(temp) move to GameMain newGame()  //might move to GameLogic in the future
-			GameScreen gameScreen = new GameScreen(600, 800);       //move to GameMain newGame()
-			root.getChildren().add(gameScreen);						//move to/replace by SceneManager
-			gameScreen.requestFocus();                              //move to SceneManager
-			
-			primaryStage.show();									//move to SceneManager
-			
-			AnimationTimer animation = new AnimationTimer() {		//replaced by thread in GameScreen
-				public void handle(long now) {                       
-					gameScreen.paintComponent();                    //move to GameScreen animationLoop
-					RenderableHolder.getInstance().update();		//move to GameScreen animationLoop
 
-				}
-			};
-			animation.start();*/
 			//this will stop all thread / free all memory when we click exit button of windows (X)
 			primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 				

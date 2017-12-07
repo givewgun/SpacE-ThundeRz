@@ -46,23 +46,11 @@ public class GameLogic {
 
 		RenderableHolder.getInstance().add(new Background());
 		RenderableHolder.getInstance().add(new Score());
-		player = new Player(this); /////////////////////////////////////
+		player = new Player(this); 
 		addNewObject(player);
 
 		spawnEnemy();
-		/*
-		 * ebig = new EBig(this); addNewObject(ebig); eboss = new EBoss(this);
-		 * addNewObject(eboss); ebug = new EBug(
-		 * ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH -
-		 * RenderableHolder.eBug.getWidth())); addNewObject(ebug); addNewObject(new
-		 * EEyeball(this, ThreadLocalRandom.current()
-		 * .nextDouble(SceneManager.SCENE_WIDTH -
-		 * RenderableHolder.eEyeball.getWidth()))); addNewObject(new EWing(this,
-		 * ThreadLocalRandom.current() .nextDouble(SceneManager.SCENE_WIDTH -
-		 * RenderableHolder.eEyeball.getWidth()))); addNewObject(new ESquid(this,
-		 * ThreadLocalRandom.current() .nextDouble(SceneManager.SCENE_WIDTH -
-		 * RenderableHolder.eEyeball.getWidth())));
-		 */
+		
 		this.canvas = canvas;
 
 		pendingBullet = new ConcurrentLinkedQueue<>();
@@ -106,8 +94,6 @@ public class GameLogic {
 
 	private void updateGame() {
 		// TODO fill code
-		// need to check collide in the gameObjectContainer, but how ?
-		// to be further discussed
 		spawnEnemy();
 		spawnItems();
 
@@ -164,12 +150,12 @@ public class GameLogic {
 			stageLevel++;
 		}
 
-		System.out.println("cap" + this.maxEnemyCap + " current " + this.currentEnemyNum);
+		//System.out.println("cap" + this.maxEnemyCap + " current " + this.currentEnemyNum);
 
 		if (this.currentEnemyNum < this.maxEnemyCap) {
 			int chance = r.nextInt(100) - 1000 / (Score.score + 1); // difficulty factor , +1 to prevent zero when start
 																	// new game
-			System.out.println(" chance " + chance);
+			//System.out.println(" chance " + chance);
 			if (chance < 40) {
 				ebug = new EBug(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.eBug.getWidth()));
@@ -196,11 +182,11 @@ public class GameLogic {
 		if (this.nextItemsSpawnTime <= now) {
 			long rand = ThreadLocalRandom.current().nextLong(10000000000l, 30000000000l); // random the time next Box
 																							// will come out
-			System.out.println("\t\tNext Box in " + rand / 1000000000l + " seconds.");
+			//System.out.println("\t\tNext Box in " + rand / 1000000000l + " seconds.");
 			this.nextItemsSpawnTime = now + rand;
 
 			double gachaPull = ThreadLocalRandom.current().nextDouble(100);
-			System.out.println("\t\tGacha: " + gachaPull);
+			//System.out.println("\t\tGacha: " + gachaPull);
 			if (gachaPull <= 40) {
 				addNewObject(new TripleGunBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.hpBox.getWidth())));
@@ -212,31 +198,6 @@ public class GameLogic {
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.hpBox.getWidth())));
 			}
 		}
-		/*
-		 * this.maxEnemyCap = 5 + stageLevel; //check score to spawn boss first
-		 * if((Score.score >= 100*stageLevel && Score.score <= 100*stageLevel*1.25) &&
-		 * Score.score != 0 && !isBossAlive) { eboss = new EBoss(this);
-		 * addNewObject(eboss); } if(Score.score >= 100*stageLevel) { stageLevel++; }
-		 * 
-		 * System.out.println("cap" + this.maxEnemyCap + " current " +
-		 * this.currentEnemyNum);
-		 * 
-		 * if(this.currentEnemyNum < this.maxEnemyCap){ int chance = r.nextInt(100) -
-		 * 1000/(Score.score+1); // difficulty factor , +1 to prevent zero when start
-		 * new game System.out.println(" chance " + chance); if(chance < 40) { ebug =
-		 * new EBug( ThreadLocalRandom.current().nextDouble(SceneManager.SCENE_WIDTH -
-		 * RenderableHolder.eBug.getWidth())); addNewObject(ebug); } else if(chance <
-		 * 70) { addNewObject(new ESquid(this, ThreadLocalRandom.current()
-		 * .nextDouble(SceneManager.SCENE_WIDTH -
-		 * RenderableHolder.eEyeball.getWidth()))); } else if(chance < 85) {
-		 * addNewObject(new EEyeball(this, ThreadLocalRandom.current()
-		 * .nextDouble(SceneManager.SCENE_WIDTH -
-		 * RenderableHolder.eEyeball.getWidth()))); } else if (chance < 95) {
-		 * addNewObject(new EWing(this, ThreadLocalRandom.current()
-		 * .nextDouble(SceneManager.SCENE_WIDTH -
-		 * RenderableHolder.eEyeball.getWidth()))); } else { ebig = new EBig(this);
-		 * addNewObject(ebig); } }
-		 */
-
+		
 	}
 }

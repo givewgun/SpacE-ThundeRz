@@ -26,10 +26,6 @@ public class MainMenu extends Canvas {
 		music.play();
 		GraphicsContext gc = this.getGraphicsContext2D();
 		gc.drawImage(RenderableHolder.background, 0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
-		/*
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
-		*/
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setFill(Color.DODGERBLUE);
 		gc.setFont(TITLE_FONT);
