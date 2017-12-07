@@ -111,10 +111,6 @@ public class Player extends CollidableEntity implements IRenderable {
 		}
 	}
 
-	private void drawTripleGunCountdown(GraphicsContext gc) {
-
-	}
-
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
@@ -145,9 +141,8 @@ public class Player extends CollidableEntity implements IRenderable {
 		}
 		if (CharacterInput.getKeyPressed(KeyCode.CONTROL)) {
 			if (bulletDelayTick - prevbulletTick > 7) {
-				System.out.println("REMAIN MISSILE" + missile);
 				if (this.missile > 0) {
-					gameLogic.addPendingBullet(new Bullet(x, y, 0, 20, 1, 6, this));
+					gameLogic.addPendingBullet(new Bullet(x, y, 0, 30, 1, 6, this));
 					RenderableHolder.missileLaunch.play();
 					missile--;
 					prevbulletTick = bulletDelayTick;
