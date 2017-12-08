@@ -12,7 +12,7 @@ public class EBig extends Enemy {
 	private GameLogic gameLogic;
 
 	public EBig(GameLogic gameLogic) {
-		super(350, 0.5);
+		super(270, 0.5);
 		this.width = RenderableHolder.eBig.getWidth();
 		this.height = RenderableHolder.eBig.getHeight();
 		yOffset = 0;
