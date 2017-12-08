@@ -14,7 +14,6 @@ public class CharacterInput {
 	private static boolean isHoldingCtrlKey = false;
 	private static Queue<KeyCode> triggeredCtrl = new ConcurrentLinkedQueue<>();
 
-	public static final char NO_CHARACTER = Character.MIN_VALUE;
 
 	public static boolean getKeyPressed(KeyCode keycode) {
 		return keyPressed.contains(keycode);

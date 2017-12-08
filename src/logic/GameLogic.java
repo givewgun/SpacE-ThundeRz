@@ -27,7 +27,7 @@ public class GameLogic {
 	public static boolean isBossAlive;
 	private int stageLevel;
 
-	private long nextItemsSpawnTime = 10000000000l;
+	private long nextItemsSpawnTime;
 
 	private GameScreen canvas;
 	private boolean isGameRunning;
@@ -52,7 +52,7 @@ public class GameLogic {
 		spawnEnemy();
 
 		this.canvas = canvas;
-
+		nextItemsSpawnTime = System.nanoTime() + 10000000000l;
 		pendingBullet = new ConcurrentLinkedQueue<>();
 
 	}
