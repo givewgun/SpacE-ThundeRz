@@ -11,7 +11,7 @@ public class ESquid extends Enemy {
 	private GameLogic gameLogic;
 
 	protected ESquid(GameLogic gameLogic, double x) {
-		super(100, 2.5);
+		super(70, 2.5);
 		// TODO Auto-generated constructor stub
 		this.width = RenderableHolder.eSquid.getWidth();
 		this.height = RenderableHolder.eSquid.getHeight();

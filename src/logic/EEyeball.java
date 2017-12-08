@@ -10,7 +10,7 @@ public class EEyeball extends Enemy {
 	private GameLogic gameLogic;
 
 	protected EEyeball(GameLogic gameLogic, double x) {
-		super(100, 1);
+		super(120, 1);
 		// TODO Auto-generated constructor stub
 		this.width = RenderableHolder.eEyeball.getWidth();
 		this.height = RenderableHolder.eEyeball.getHeight();
