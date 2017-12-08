@@ -20,7 +20,7 @@ public class Score implements IRenderable {
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub
-		return Integer.MIN_VALUE + 1;
+		return Integer.MAX_VALUE;
 	}
 
 	@Override
