@@ -31,7 +31,7 @@ public class EBig extends Enemy {
 		long now = System.nanoTime();
 		this.x = Math.sin(2 * now * 1e-9) * ((SceneManager.SCENE_WIDTH - this.width) / 2)
 				+ (SceneManager.SCENE_WIDTH - this.width) / 2.0;
-		this.y = Math.cos(2 * now * 1e-9) * (200) + yOffset - 200;
+		this.y = Math.cos(2 * now * 1e-9) * (200) + yOffset - 200 - this.height - this.speed;
 		if (this.isOutOfScreen()) {
 			this.visible = false;
 			this.destroyed = true;
