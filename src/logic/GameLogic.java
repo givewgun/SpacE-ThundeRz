@@ -52,7 +52,7 @@ public class GameLogic {
 		spawnEnemy();
 
 		this.canvas = canvas;
-		nextItemsSpawnTime = System.nanoTime() + ThreadLocalRandom.current().nextLong(10000000000l, 30000000000l);
+		nextItemsSpawnTime = System.nanoTime() + ThreadLocalRandom.current().nextLong(5000000000l, 15000000000l);
 		pendingBullet = new ConcurrentLinkedQueue<>();
 
 	}
@@ -181,17 +181,17 @@ public class GameLogic {
 	private void spawnItems() {
 		long now = System.nanoTime();
 		if (this.nextItemsSpawnTime <= now) {
-			long rand = ThreadLocalRandom.current().nextLong(10000000000l, 30000000000l); // random the time next Box
+			long rand = ThreadLocalRandom.current().nextLong(5000000000l, 15000000000l); // random the time next Box
 																							// will come out
 			// System.out.println("\t\tNext Box in " + rand / 1000000000l + " seconds.");
 			this.nextItemsSpawnTime = now + rand;
 
 			double gachaPull = ThreadLocalRandom.current().nextDouble(100);
 			// System.out.println("\t\tGacha: " + gachaPull);
-			if (gachaPull <= 40) {
+			if (gachaPull <= 32.5) {
 				addNewObject(new TripleGunBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.hpBox.getWidth())));
-			} else if (gachaPull <= 50) {
+			} else if (gachaPull <= 55) {
 				addNewObject(new MissileBox(ThreadLocalRandom.current()
 						.nextDouble(SceneManager.SCENE_WIDTH - RenderableHolder.hpBox.getWidth())));
 			} else {
