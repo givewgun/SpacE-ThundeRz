@@ -9,7 +9,7 @@ public class EWing extends Enemy {
 	private int bulletDelayTick = 0;
 	private GameLogic gameLogic;
 
-	protected EWing(GameLogic gameLogic, double x) {
+	public EWing(GameLogic gameLogic, double x) {
 		super(150, 0.5);
 		// TODO Auto-generated constructor stub
 		this.width = RenderableHolder.eWing.getWidth();

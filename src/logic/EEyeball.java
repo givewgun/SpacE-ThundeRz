@@ -9,7 +9,7 @@ public class EEyeball extends Enemy {
 	private int bulletDelayTick = 0;
 	private GameLogic gameLogic;
 
-	protected EEyeball(GameLogic gameLogic, double x) {
+	public EEyeball(GameLogic gameLogic, double x) {
 		super(120, 1);
 		// TODO Auto-generated constructor stub
 		this.width = RenderableHolder.eEyeball.getWidth();

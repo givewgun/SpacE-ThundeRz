@@ -10,7 +10,7 @@ public class ESquid extends Enemy {
 	private int bulletDelayTick = 0;
 	private GameLogic gameLogic;
 
-	protected ESquid(GameLogic gameLogic, double x) {
+	public ESquid(GameLogic gameLogic, double x) {
 		super(70, 2.5);
 		// TODO Auto-generated constructor stub
 		this.width = RenderableHolder.eSquid.getWidth();

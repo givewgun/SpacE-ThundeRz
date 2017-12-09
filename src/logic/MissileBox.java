@@ -7,7 +7,7 @@ import sharedObject.RenderableHolder;
 
 public class MissileBox extends Items {
 
-	protected MissileBox(double x) {
+	public MissileBox(double x) {
 		super(ThreadLocalRandom.current().nextDouble(1, 5));
 		this.width = RenderableHolder.tripleGunBox.getWidth();
 		this.height = RenderableHolder.tripleGunBox.getHeight();

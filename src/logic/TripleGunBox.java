@@ -7,7 +7,7 @@ import sharedObject.RenderableHolder;
 
 public class TripleGunBox extends Items {
 
-	protected TripleGunBox(double x) {
+	public TripleGunBox(double x) {
 		// TODO Auto-generated constructor stub
 		super(ThreadLocalRandom.current().nextDouble(1, 5));
 		this.width = RenderableHolder.tripleGunBox.getWidth();
